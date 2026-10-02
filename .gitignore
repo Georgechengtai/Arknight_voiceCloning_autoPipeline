@@ -1,0 +1,17 @@
+# 遊戲素材、原聲、生成物：有版權且體積大，一律不入庫
+data/
+assets/
+refs/
+out/
+cache/
+*.wav
+*.mp3
+*.mp4
+*.png
+*.jpg
+# 環境
+.venv/
+node_modules/
+__pycache__/
+.DS_Store
+.env
