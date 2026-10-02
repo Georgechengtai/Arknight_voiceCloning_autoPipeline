@@ -2,6 +2,7 @@
 
 > 核實環境只放行 github.com、raw.githubusercontent.com、prts.wiki（主域）。
 > media.prts.wiki 與 torappu.prts.wiki 在核實環境被擋，其 URL 格式從 PRTS 播放器原始碼推得，**S2 必須在 Mac 上實測**。
+> 2026-10-02 補充：視覺素材改以 §3b fexli/ArknightsResource 為首選（GitHub raw，已 100% 實測），PRTS 退為備援；音訊仍以 PRTS torappu 為主，§3c 為備援。
 
 ## 1. 劇情腳本：Kengxxiao/ArknightsGameData
 
@@ -67,6 +68,31 @@
 - PRTS 對連續請求會 `Connection reset by peer`：每請求間隔 ≥ 1 s，失敗退避重試 3 次，結果快取到 `cache/prts/`。
 - 一次只下載當前場景清單需要的素材，不要全量鏡像。
 - 不抓 HTML 頁面；只用 `action=raw` 與 `api.php`。
+
+## 3b. fexli/ArknightsResource（**視覺素材首選**，GitHub raw，無限速問題）
+
+來源線索：TLVR（`https://pseudomon.github.io/tlvr/credits`）的致謝頁。倉庫 `https://github.com/fexli/ArknightsResource`，自動化解包，2025-04 後持續更新；聲明「版權歸鷹角，僅供學習研究」。
+
+路徑規則（全部以巴別塔實測）：
+- 背景：`avgs/bg/<image>.png`，例 `avgs/bg/49_g8_scarmarketcamp.png`。**48/48**。
+- Image() 插圖／CG：`avgs/<image>.png`，例 `avgs/avg_5_7_shining.png`、`avgs/49_i10_1.png`。巴別塔 18/18。
+- 立繪：`avgs/npcs/<key>.png`，key = 腳本名把 `#` 與 `$` 都換成 `_`：`avg_npc_1305_1#8$1` → `avg_npc_1305_1_8_1.png`；`avg_npc_069#2` → `avg_npc_069_2.png`。
+  - 無變體後綴的名字查 `avgs/npcs/summary.json`（結構 `{group: {size:{x,y}, pos:{x,y}, items:{<variant key>: ""}}}`，與 PRTS Data_Link 同源）：`npc_10002` → items `npc_10002_1`；舊式 NPC `avg_npc_053` → items `avg_npc_053#053` → 檔名 `avg_npc_053_053.png`；`avg_003_kalts_1` 本體 → `avg_003_kalts_1.png`。
+  - 巴別塔 199/199 可解析（190 個直接規則命中＋9 個舊式 NPC 經 summary.json 命中）。
+- 無音訊。
+- 原始 URL：`https://raw.githubusercontent.com/fexli/ArknightsResource/main/<path>`；曾短暫用 Git LFS 後回退為普通 git，raw 回傳即為 PNG 本體。
+
+## 3c. Aceship/Arknight-voices（音訊 WAV 備援）
+
+`https://github.com/Aceship/Arknight-voices`，資料夾 `music/`、`avg/`、`battle/`、`player/`、`voice*/`，**無損 WAV**。
+路徑規則：PRTS Data_Audio 的值去掉 `Sound_Beta_2/` 前綴、全部小寫、加 `.wav`：`Sound_Beta_2/Music/act9d0d0/m_avg_drift_intro` → `music/act9d0d0/m_avg_drift_intro.wav`。
+巴別塔 222 個音訊鍵中命中 **150**；缺的集中在 `AVG/d_avg_*` 音效與 2018 年 beta 時期 BGM（`beta1_180603/…`）、`Player/`、`Battle/`。因此音訊以 PRTS torappu 為主（索引 222/222）、本倉庫為備援，S2 需實作多來源依序嘗試。
+
+## 3d. 其他鏡像與參考實作
+- `akgcc/arkdata`（經 `https://cdn.jsdelivr.net/gh/akgcc/arkdata@main/assets/torappu/dynamicassets/avg/backgrounds/<name>.png`）有背景鏡像；音訊路徑未命中。
+- **akgcc/akgcc.github.io**（MIT）：`js/story.js`（124 KB）＋`js/util.js` 是一個無建置步驟的劇情閱讀器。它是**滾動式閱讀器**（每句生成一個 `.dialog` div 疊在 `.scene` 上），不是全屏播放，**不能直接拿來錄影**；但它實作了 60 多個腳本指令（animtext、background、backgroundtween、bgeffect、blocker、cameraeffect、camerashake、cgitem、character、characteraction、charactercutin、charslot、curtain、decision、delay、dialog、effect、focusin/focusout、gridbg、hidecgitem/hideitem/showitem、image、imagerotate、imagetween、interlude、largebg、largebgtween、multiline、musicvolume、playmusic、playsound、predicate、sticker、stickerclear、stopmusic、stopsound、subtitle、theater、timersticker、verticalbg、video 等）的解析與語義，是 S1 解析器與 S5 渲染器最好的**開源參考**。`util.js` 的 `uri_background/uri_character/uri_sound` 給出多來源 URL 規則。
+- `sethfire/akstoryviewer`（極小，22 commits，無授權聲明）、`AyaKumo/arknights-story-reader`（靜態 HTML 匯出）：參考價值低。
+- PRTS `Widget:ScenarioSimulator`：全屏播放器，座標語義最接近遊戲，但是 wiki 內容、授權不明，只讀不抄。
 
 ## 4. 已排除的來源（避免重複踩坑）
 - `Aceship/Arknight-Images`：`avg/backgrounds`、`avg/characters` 僅有舊素材，巴別塔背景與 `avg_npc_13xx` 立繪全部 404。

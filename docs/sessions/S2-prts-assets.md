@@ -1,7 +1,12 @@
-# S2 PRTS 素材解析與下載器
+# S2 素材解析與下載器（fexli 首選、PRTS 備援）
 
 ## 目標
 `python -m pipeline assets --scene act33side_st01` 讀 timeline.json，解析每個背景、插圖、立繪變體、BGM、音效的 URL，限速下載到 `assets/`，輸出 `out/<scene>/assets_manifest.json`（事件→本地檔路徑）。對 BB-ST-1 做到 100% 命中。
+
+## 來源優先序（2026-10-02 更新，詳見 docs/02-data-sources.md §3–3d）
+- 背景 / CG / 立繪：**先 fexli/ArknightsResource**（raw.githubusercontent，規則見 §3b；立繪變體用 `avgs/npcs/summary.json`），404 再退 PRTS 索引。
+- BGM / 音效：先 PRTS Data_Audio → torappu.prts.wiki（URL 規則待實測），失敗退 Aceship/Arknight-voices WAV（§3c，150/222）。兩者都沒有的鍵寫入 `missing` 並讓渲染靜音該音效。
+- 每個素材在 manifest 中記錄實際來源 `source: fexli|prts|aceship`。
 
 ## 已知事實（詳見 docs/02-data-sources.md §3）
 - 索引：`https://prts.wiki/index.php?title=Widget:Data_Image&action=raw`（同理 Data_Char、Data_Link、Data_Audio）。快取到 `cache/prts/`，24 h 內不重抓。

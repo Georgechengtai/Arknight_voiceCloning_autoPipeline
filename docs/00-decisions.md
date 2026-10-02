@@ -26,8 +26,8 @@
 | D6 | 博士台詞 | 配音：設計一個「巴別塔時期博士」聲線 | 使用者明確要求。巴別塔博士 467 行（10%）。 |
 | D7 | 旁白 | 固定一個旁白聲線念出；Sticker 時間地點字卡只顯示不念 | 廣播劇標準做法；避免大段靜音。 |
 | D8 | NPC 選角 | 分層選角表 casting.yaml：幹員→原聲克隆；行數 ≥ 30 的主要 NPC→各一個 Voice Design；其餘路人→按性別/年齡/氣質指向約 8–10 個共用聲線；未指定者落到預設聲線並在報告中列出 | 104 個說話者逐一設計成本高且路人只有幾句。身份以「說話者名＋charslot 立繪 id」為鍵（「？？？」「“阿米娅”」是假名；「萨卡兹雇佣兵」可能是不同人）。 |
-| D9 | 視覺素材來源 | PRTS wiki 的機器可讀索引（Widget:Data_Image / Data_Char / Data_Link / Data_Audio）→ media.prts.wiki / torappu.prts.wiki | Aceship/Arknight-Images 已過時（巴別塔背景與新 NPC 立繪全部 404）；yuanyan3060/ArknightsGameResource 無 avg 素材。PRTS 索引對巴別塔覆蓋 48/48 背景、199/199 立繪名、18/18 BB-ST-1 音訊鍵。 |
-| D10 | 渲染方式 | 自寫 HTML/Canvas 渲染器，Playwright 以虛擬時鐘逐幀截圖，ffmpeg 編碼混音 | 使用者兩次確認。可做打字機、立繪滑入、震動、淡入淡出；同一渲染器日後可直接變互動播放器。放棄 Python 靜圖方案（快但動效少）與改造 PRTS 播放器（他人壓縮 bundle、點擊推進、授權不明）。 |
+| D9 | 視覺素材來源 | **首選 fexli/ArknightsResource**（GitHub raw：`avgs/bg/`、`avgs/`、`avgs/npcs/`＋`summary.json`），備援 PRTS 索引（Widget:Data_Image / Data_Char / Data_Link）。音訊首選 PRTS Data_Audio → torappu.prts.wiki，備援 Aceship/Arknight-voices（WAV） | 2026-10-02 第二輪核實：fexli 對巴別塔 48/48 背景、18/18 CG、199/199 立繪，且無 PRTS 的連線重置問題；Aceship/Arknight-voices 音訊只覆蓋 150/222。Aceship/Arknight-Images 已過時；yuanyan3060 無 avg 素材。 |
+| D10 | 渲染方式 | 自寫 HTML/Canvas 渲染器，Playwright 以虛擬時鐘逐幀截圖，ffmpeg 編碼混音 | 使用者兩次確認。可做打字機、立繪滑入、震動、淡入淡出；同一渲染器日後可直接變互動播放器。放棄 Python 靜圖方案（快但動效少）與改造 PRTS 播放器（他人壓縮 bundle、點擊推進、授權不明）。另評估 akgcc/akgcc.github.io 的 story.js（MIT）：是滾動式閱讀器而非全屏播放，不能直接錄影，但作為指令語義的開源參考（見 02 §3d）。 |
 | D11 | BGM / 音效 | 全部按腳本指令加入原版 BGM 與音效（intro/loop、淡入淡出、音量指令） | 使用者要求「原版＋語音」。版權識別風險已告知並接受。 |
 | D12 | 語音質檢 | 每句生成後用中文 ASR（FunASR Paraformer 或 Whisper）回轉文字比對字錯率；超閾值換種子重生最多 3 次；仍失敗列入人工聽審報告。另維護專有名詞拼音表強制讀音 | 4400 句人工全聽要 5–6 小時；目標人工聽審 < 5%。 |
 | D13 | 情緒控制 | 第一版不控情緒；資料結構預留 `emotion` 欄位 | 先聽 BB-ST-1 效果再決定是否用 LLM 批量標情緒。 |
@@ -58,3 +58,8 @@
 - 以 AskUserQuestion 問清楚再動手；一次一個問題。
 - 文件中所有引用自足，不用未解釋的縮寫或編號。
 - 在 BB-ST-1 跑通之前，只需要和他討論「邊界」問題（選角聽審、版權、平台規則、SCRP 權限）；其餘技術細節由各 session 自行決定並記錄在文件。
+
+## 追加記錄 2026-10-02（第二輪）
+
+- 專案擁有者表示：bilibili 互動視頻／可互動播放器是**做完 MP4 之後的後話**，不納入當前範圍；渲染器只需不妨礙日後擴展。
+- 沿 TLVR 致謝頁核實了 fexli/ArknightsResource、Aceship/Arknight-voices、akgcc/akgcc.github.io、akgcc/arkdata，結果已寫入 D9、D10 與 `docs/02-data-sources.md` §3b–3d。S2 改為多來源解析（fexli → PRTS；PRTS 音訊 → Aceship WAV）。

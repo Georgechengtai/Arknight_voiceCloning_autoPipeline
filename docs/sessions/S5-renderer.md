@@ -14,6 +14,11 @@
 5. 效能目標：BB-ST-1（約 8–10 分鐘影片）在 M 系列 Mac 上 ≤ 60 分鐘渲染。若 screenshot 太慢，改成在頁內用 `canvas.toDataURL`/`toBlob` 批量回傳或 WebCodecs 編碼——先量測再優化。
 6. 單測：schedule 展開（給定音訊長度表，檢查每事件時刻）；渲染器以 Playwright 在 3 個時刻截圖與基準圖做像素差（容忍 1%）。
 
+## 開源參考
+- `https://raw.githubusercontent.com/akgcc/akgcc.github.io/master/js/story.js`（MIT）：60 多個指令的解析與語義，特別是 charslot/character 的 slot 與 focus 映射（`CharslotNameMap`、`CharslotFocusMap`）、sticker/subtitle、blocker、camerashake、imagetween。它是滾動閱讀器，只借語義不借 DOM 結構。
+- PRTS `Widget:ScenarioSimulator`（只讀）：全屏座標語義。
+- 互動播放模式是專案後話，不在本 session 範圍。
+
 ## 在 S4 完成前如何開發
 用 macOS `say -v Tingting` 或任意 TTS 生成佔位 WAV（檔名按 line_id），只為拿到時長；不要把佔位音訊入庫。
 
