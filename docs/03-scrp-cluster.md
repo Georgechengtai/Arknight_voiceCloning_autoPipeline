@@ -18,6 +18,8 @@
 
 ## 待確認（S0 偵察）
 
+> **2026-10-02 已由 S0 全部實測回答，見 `cluster/ENV.md`。** 上方「已知事實」來自官網文件，與實測不一致處（校外 SSH 不通、3090 所在節點、預裝環境版本、3090 節點記憶體吃緊）以 `cluster/ENV.md` 為準。
+
 1. 使用者的 QoS 與分區（學生還是研究生級）→ 單次作業最長時間、能否同時用 1 張以上 GPU。
 2. 計算節點是否能連外網（HuggingFace / GitHub）。文件提到 Apptainer 可用 URL 拉映像，暗示可以，但要實測 `curl -I https://huggingface.co` 於 `compute` 內。
 3. `~/large-data` 實際配額；conda 建環境預設放 `~/`（20 GB 可能不夠），需設 `conda config --add envs_dirs ~/large-data/conda/envs` 與 `pkgs_dirs`。

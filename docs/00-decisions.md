@@ -63,3 +63,18 @@
 
 - 專案擁有者表示：bilibili 互動視頻／可互動播放器是**做完 MP4 之後的後話**，不納入當前範圍；渲染器只需不妨礙日後擴展。
 - 沿 TLVR 致謝頁核實了 fexli/ArknightsResource、Aceship/Arknight-voices、akgcc/akgcc.github.io、akgcc/arkdata，結果已寫入 D9、D10 與 `docs/02-data-sources.md` §3b–3d。S2 改為多來源解析（fexli → PRTS；PRTS 音訊 → Aceship WAV）。
+
+## 追加記錄 2026-10-02（S0 SCRP 偵察，詳見 `cluster/ENV.md`）
+
+新事實，未改動任何既有決定；標「待定」者需專案擁有者在 S4 開工前決定。
+
+- 風險表中「SCRP 計算節點是否有外網未確認；學生 QoS 可能只給 1 GPU / 1 天」已解除：計算節點有外網；帳號是教師級配額（單一作業 5 天、最多 4 張 RTX 3090）。
+- TTS 環境已在叢集建好並於 RTX 3090 上驗證（torch 2.8.0+cu128，`torch.cuda.is_available()` 為 True）；IndexTTS-2 與 2.5 的權重都已下載，各實際合成 8 句成功。
+- **D4「rsync 交換」待定**：SCRP 的 SSH 從校外不通（須校園網或 CUHK VPN），而專案擁有者的 Mac 必須常開 Private Internet Access。實測 CUHK VPN（GlobalProtect）在現有設定下與它不能並存（一連上就全面斷網）。S0 全程改走 JupyterHub 的 HTTPS 介面完成傳檔、提交作業、取結果。傳檔方式（JupyterHub 介面／只在校園網用 SSH／改 Private Internet Access 設定求並存）尚未決定。
+- **D3 引擎版本待定**：IndexTTS 官方已出 2.5 版，與 IndexTTS-2 並存於同一倉庫。用凯尔希、阿斯卡纶原聲克隆並念 BB-ST-1 真實台詞的實測（`cluster/ENV.md`「追加測試三」）：2.5 版較快、較省顯示記憶體，但有兩句長台詞輸出失控；IndexTTS-2 全部正常且音色相似度略高。待專案擁有者試聽後決定。
+- **D13「第一版不控情緒」待重新確認**：BB-ST-1 的凯尔希台詞全是喊叫與悲痛短句。實測指定情緒向量會讓音色相似度下降，用角色自己的語音當情緒參考較穩。是否維持 D13 由專案擁有者試聽後決定。
+- **D12 回檢需補一步**：語音辨識會把專有名詞寫成同音字（特蕾西娅→特雷西亚），直接比字會誤判；需先做同音歸一。
+- 專案擁有者提出用 ElevenLabs 克隆角色語音當基準；未執行，D3 與風險表「不上傳任何聲優音訊到 ElevenLabs」維持不變。
+- **D3 首選引擎待重新決定（2026-10-03）**：專案擁有者試聽後認為不微調的 IndexTTS 效果很差，且它只能用一段 ≤15 秒的參考音、無法利用每個角色約 5 分鐘的整池語音。已在叢集實測 D3 的備選 GPT-SoVITS：用凯尔希 36 句原聲微調約 4 分鐘完成，合成速度約為 IndexTTS-2 的 4 倍；聲紋相似度與 IndexTTS-2 打平（0.844 對 0.840），英文詞發音較差。音質與語氣待專案擁有者試聽後定案。另一個與引擎無關的限制：幹員語音池幾乎沒有喊叫或悲痛的樣本，激烈情緒的台詞沒有可學的示範（詳見 `cluster/ENV.md`「追加測試四」）。
+- **D4 進展**：GlobalProtect 一次自動重連時實測 SSH 金鑰登入成功，兩個 VPN 並存只剩 DNS 一個問題；另開 session 處理，任務書 `docs/sessions/S0b-vpn-coexistence.md`。
+- 一章推理時間原估 1–2 小時偏樂觀：以實測速度粗估，單張 3090 上限約 4 小時（可拆多個作業並行，配額允許 4 張）。
