@@ -2,6 +2,7 @@
 data/
 assets/
 refs/
+!config/refs/
 out/
 cache/
 *.wav
