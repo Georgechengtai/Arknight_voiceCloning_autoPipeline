@@ -1,0 +1,5 @@
+seq	identity	kind	confidence	basis
+5	厄尔苏拉	-	high	下一句同一人接著發號施令，顯示名改為厄尔苏拉（立繪 avg_npc_1067_1）
+15	Mantra	dialogue	high	Subtitle 字幕帶引號；下一句旁白寫「清冷嘶哑的声音在厄尔苏拉的脑海中响起」，是 Mantra 把話直接傳進對方腦中（第 24 句說明她「双唇紧闭」卻能讓人聽見）
+22	Mantra	dialogue	high	Subtitle 字幕帶引號；下一句 Scout 回答「我心中有数，Mantra女士」，第 24 句旁白說明是她在 Scout 腦中說話
+156-169@萨卡兹雇佣兵	萨卡兹雇佣兵（05后·曼弗雷德的部下）	-	high	立繪 avg_npc_054；在熔爐平台向曼弗雷德匯報、稱他「长官」的軍事委員會一方傭兵
