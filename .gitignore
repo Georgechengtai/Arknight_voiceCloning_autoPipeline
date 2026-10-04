@@ -19,3 +19,5 @@ __pycache__/
 # Claude Code worktrees 與本機記錄
 .claude/worktrees/
 logs/
+*.egg-info/
+.pytest_cache/

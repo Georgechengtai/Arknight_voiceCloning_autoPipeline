@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "timeline.schema.json",
+  "title": "timeline.json",
+  "description": "一場劇情解析後的事件序列。契約說明見 docs/01-architecture.md。",
+  "type": "object",
+  "required": ["scene_id", "story_code", "story_name", "avg_tag", "source", "coord_system", "events"],
+  "additionalProperties": false,
+  "properties": {
+    "scene_id": {"type": "string", "pattern": "^[A-Za-z0-9_]+$"},
+    "story_code": {"type": "string"},
+    "story_name": {"type": "string"},
+    "avg_tag": {"type": "string"},
+    "source": {"type": "string"},
+    "coord_system": {
+      "type": "object",
+      "required": ["w", "h"],
+      "properties": {"w": {"type": "integer"}, "h": {"type": "integer"}},
+      "additionalProperties": false
+    },
+    "header": {
+      "description": "腳本首行 [HEADER(...)] 的參數；不產生事件。",
+      "type": ["object", "null"]
+    },
+    "stats": {
+      "type": "object",
+      "required": ["events", "lines", "dialogue", "narration", "subtitle", "multiline", "planning_count"],
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "oneOf": [{"$ref": "#/$defs/line"}, {"$ref": "#/$defs/command"}]
+      }
+    }
+  },
+  "$defs": {
+    "args": {
+      "description": "指令參數。鍵一律小寫；未加引號的數字與 true/false 已轉型；音訊鍵已去掉 $。",
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z_][a-z0-9_.]*$"}
+    },
+    "line": {
+      "description": "一句要顯示（且預設要配音）的文字。",
+      "type": "object",
+      "required": ["i", "cmd", "line_id", "kind", "speaker", "sprites_on_stage", "focus_group", "text", "tts_text", "emotion"],
+      "additionalProperties": false,
+      "properties": {
+        "i": {"type": "integer", "minimum": 0},
+        "cmd": {"const": "line"},
+        "line_id": {"type": "string", "pattern": "^[A-Za-z0-9_]+_[0-9]{4}$"},
+        "kind": {"enum": ["dialogue", "narration", "subtitle"]},
+        "speaker": {"type": ["string", "null"]},
+        "sprites_on_stage": {
+          "description": "說這句時台上的立繪組：charslot 依 l、m、r 排序，其後是 charactercutin。",
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "focus_group": {
+          "description": "被打亮的立繪組（多半是說話者）；無法確定時為 null。",
+          "type": ["string", "null"]
+        },
+        "text": {"description": "顯示用純文字：已去富文本標籤、已代入 {@nickname}。", "type": "string"},
+        "rich_text": {"description": "只在與 text 不同時出現：帶 <color> 等標籤的原文。", "type": "string"},
+        "tts_text": {"type": ["string", "null"]},
+        "emotion": {"type": ["string", "null"]},
+        "multiline": {
+          "description": "[multiline] 區塊的一段。同 block 的各段在同一個對話框接續顯示。",
+          "type": "object",
+          "required": ["block", "end"],
+          "additionalProperties": false,
+          "properties": {"block": {"type": "integer", "minimum": 1}, "end": {"type": "boolean"}}
+        },
+        "args": {"$ref": "#/$defs/args"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"kind": {"const": "dialogue"}}},
+          "then": {"properties": {"speaker": {"type": "string", "minLength": 1}}}
+        },
+        {
+          "if": {"properties": {"kind": {"enum": ["narration", "subtitle"]}}},
+          "then": {"properties": {"speaker": {"type": "null"}}}
+        }
+      ]
+    },
+    "command": {
+      "description": "其餘所有腳本指令。未知指令與解析失敗的行（cmd 為 _unparsed）附 raw 原文。",
+      "type": "object",
+      "required": ["i", "cmd", "args"],
+      "additionalProperties": false,
+      "properties": {
+        "i": {"type": "integer", "minimum": 0},
+        "cmd": {"type": "string", "pattern": "^[a-z_][a-z0-9_.]*$", "not": {"const": "line"}},
+        "args": {"$ref": "#/$defs/args"},
+        "raw": {"type": "string"},
+        "error": {"type": "string"},
+        "src_line": {"type": "integer"}
+      }
+    }
+  }
+}

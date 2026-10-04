@@ -1,0 +1,24 @@
+# 管線設定。數值來源：docs/00-decisions.md 的 D12、D14、D15。
+video:
+  width: 1920
+  height: 1080
+  fps: 30
+  coord_system: {w: 1280, h: 720}   # 遊戲腳本座標系；輸出等比放大 1.5
+
+pacing:
+  pause_after_line_s: 0.5           # 每句語音結束後再停留
+  silent_line_base_s: 1.0           # 無語音的句子：基準秒數
+  silent_line_per_char_s: 0.12      # 無語音的句子：每字加秒
+  blocker_default_fadetime_s: 0.25
+
+qc:
+  cer_threshold: 0.10               # 字錯率超過即重生
+  max_retries: 3
+
+parse:
+  default_act: act33side
+  doctor_nickname: 博士             # 腳本中的 {@nickname} 以此代入
+
+gamedata:
+  base_url: https://raw.githubusercontent.com/Kengxxiao/ArknightsGameData/master/zh_CN/gamedata
+  excel_tables: [story_review_table, charword_table, character_table]
