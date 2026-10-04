@@ -15,3 +15,7 @@ node_modules/
 __pycache__/
 .DS_Store
 .env
+
+# Claude Code worktrees 與本機記錄
+.claude/worktrees/
+logs/

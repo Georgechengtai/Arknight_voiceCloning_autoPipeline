@@ -20,3 +20,19 @@ S0 隨時可做。S4 在 S0 與 S3 之後。S6 最後。
 - 不把遊戲素材、原聲、生成音訊/影片提交到 git（`.gitignore` 已設）。
 - 每個 session 結束時更新對應任務書底部的「完成記錄」，寫下實際做了什麼、偏離設計之處、留給下一個 session 的問題。
 - 遇到需要使用者決定的「邊界問題」（版權、平台規則、聲線取捨、叢集權限）用 AskUserQuestion 問；純技術細節自行決定並記錄。
+
+## 2026-10-04 更新：目前可同時進行的三個 session
+
+原計畫一次排了七個 session，結果卡在 S0。現在只開彼此不相依、馬上能做的三個，各自在自己的 worktree（`.claude/worktrees/<名稱>`，分支同名）裡工作，做完再合回 master。
+
+| worktree／分支 | 任務書 | 做什麼 | 用到叢集 | 需要專案擁有者 |
+|---|---|---|---|---|
+| `s1-parser` | `S1-parser-timeline.md` | 專案骨架、腳本解析器、timeline.json（原計畫不變） | 否 | 否 |
+| `identity-table` | `SA-identity-table.md` | 每一句到底是誰在說；劇本名字與幹員的對應 | 否 | 看一份附上下文的待確認清單 |
+| `ref-catalogs` | `SB-ref-catalogs.md` | 替每個可克隆的幹員備好參考音清單 | 是 | 否 |
+
+三者之後匯合成下一步（尚未開 session）：導演表（逐句挑參考音與情緒描述）→ 合成與自動質檢 → 抽查。無原聲角色的 ElevenLabs 選角（原 S3）與渲染器（原 S5）等這三個有結果再排。
+
+S0 與 S0b 已完成。已定案的合成做法與各項決定見 `docs/00-decisions.md` 的追加記錄。
+
+合併時注意：`cluster/ENV.md` 與 `docs/00-decisions.md` 多個 session 都會追加，請只在檔尾加新的一節，不要改寫既有內容。

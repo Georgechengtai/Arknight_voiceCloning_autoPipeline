@@ -48,4 +48,11 @@ Private Internet Access（以下稱 PIA，使用者必須常開，否則連不�
 - 更新 `docs/00-decisions.md` 追加記錄裡「D4 待定」那一條的結論。
 
 ## 完成記錄
-（session 結束時填寫）
+2026-10-04 完成，三項目標全部達成。證據與最終設定見 `cluster/ENV.md`「追加測試六」。
+
+- 改了三項設定（都由使用者親手改）：PIA 分流清單移除 `137.189.0.0/16`；PIA 的 DNS 改成 Use Existing DNS；macOS Wi-Fi 的 DNS 設為 `1.1.1.1`、`8.8.8.8`。kill switch 與 GlobalProtect 未動。
+- 任務書候選方案之外的發現：只改 PIA 的 DNS 會在下次重連時斷網（供應商 DNS 不回應經 PIA 來的查詢），所以多了 Wi-Fi DNS 那一項。
+- 目標一：兩者同時連線時 Claude 可達、出口位址是 PIA 的。目標二：`ssh scrp 'hostname'` 回 `scrp-login`。目標三：GlobalProtect 斷線／重連、PIA 重連共 220 筆記錄中 Claude 不可達 0 筆。
+- 副作用：監測腳本探測太頻繁，叢集封鎖了 VPN 位址約一小時（已自行解除）；腳本已改為每 60 秒探一次。
+- 另外應使用者要求：SCRP 模型服務的金鑰存入 `~/.config/scrp/env`，用法寫成全域 skill `scrp-api`；移除分流規則後 GLM 實測仍可用。
+- `docs/00-decisions.md` 已追加 D4 結論。未提交到 git。
