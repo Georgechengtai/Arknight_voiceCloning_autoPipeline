@@ -52,3 +52,11 @@ BB-ST-1 的配音已完成並經專案擁有者認可（六版，見 `docs/00-de
 每個 worktree 裡的 `out`、`data`、`assets`、`.venv` 是連到主倉庫同名目錄的捷徑（已列入 `.git/info/exclude`），所以三個 session 看到的是同一份資料，產出也直接落在主倉庫。**不要刪除或覆蓋 `out/act33side_st01/` 裡既有的檔案**（那是認可過的成品與各版本的音檔），只新增。
 
 合併時注意同上：`docs/00-decisions.md`、`docs/01-architecture.md`、`cluster/ENV.md` 只在檔尾加新的一節。
+
+## 2026-10-06 更新：第一支影片完成，三個分支已合併；下一個是完全自主的 BB-1
+
+BB-ST-1 的影片經專案擁有者看過（含旁白說書版、結尾句、混音修正）。素材、渲染器、逐句語音三個 session 的分支都已合回 master，`python -m pipeline assets`、`render` 與 `tools/voice_manifest.py` 現在都在主線上。
+
+| 任務書 | 做什麼 | 需要專案擁有者 |
+|---|---|---|
+| `SD-bb1-autonomous.md` | 實驗：完全不向他提問，自己把 BB-1 兩場從劇本做到影片，並回報成本 | 只需 CUHK VPN 保持連線；全程不提問 |
