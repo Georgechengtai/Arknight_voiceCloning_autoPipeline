@@ -216,3 +216,16 @@ BB-ST-1 的 143 句配音已完成並經專案擁有者聽過六版（過程與�
 - `pos`／`size` 是 1280×720 遊戲座標系下的錨點與顯示尺寸（來自 fexli `summary.json`，與 PRTS Data_Link 同源）；`w`／`h` 是圖檔的實際像素。
 - `effects`：這一場用到的特效名（`<指令>:<名字>`），沒有對應檔案。`missing`：`{kind, key, reason}`，渲染時該素材略過（音效靜音）。
 - 來源 `source` ∈ fexli / prts / aceship。每個檔的來源另存 `assets/sources.json`。
+
+## 追加 2026-10-05（SC：BB-ST-1 的逐句語音檔與清單已產出，契約的補充）
+
+`out/act33side_st01/voice_manifest.json` 與 `voice/<line_id>.wav`（143 個檔、158 筆）已由 `tools/voice_manifest.py` 產出，格式照上一節。實作時補上的細節：
+
+- **「上一個說話者」看的是上一句有聲音的行**，不是上一筆。中間隔著不配音的行（「……」）時，預設間隔仍照「上一句有聲音的人是不是同一個」決定。這是 `tools/scene_assemble.py` 原本的算法，渲染器要照這個算，接出來的時間才會與認可過的 `scene.mp3` 一致。算法的參考實作是 `tools/voice_manifest.py` 的 `timeline()`（有測試）。
+- **不配音的行**：停留 1.0 秒，然後下一句再算它自己的間隔（兩者相加）。
+- **清單頂層多一個 `gap_rules`**（`same_speaker` 0.8、`turn` 0.6、`silent_line` 1.0），是產生清單時用的預設值，僅供對照；渲染器的可調設定以自己的為準。
+- **選用欄位 `hold`**（只會出現在不配音的行）：這一行該停留幾秒，沒有這個欄位就用預設 1.0 秒。用途：ElevenLabs 段內的「……」在合成時是一個停頓，若那個停頓不到 1 秒，就把實際長度寫在這裡。BB-ST-1 的三處（0028、0076、0091）停頓都超過 1 秒，所以這一場的清單裡沒有出現 `hold`。
+- **ElevenLabs 段內各句的 `gap_before` 是量出來的實際停頓**（0.10–1.52 秒），不是預設值；段的第一句沿用導演表的值或 null。段內有「……」時，停頓先扣掉它停留的 1 秒，剩下的才是下一句的 `gap_before`。
+- **音量是「整段一個增益」**：ElevenLabs 同一段的各句用同一個增益（整段平均約 -20 dB），段內的輕重對比保持合成時的樣子，所以個別輕聲的句子會低於 -20 dB。幹員台詞本來就是逐句各調。
+- `dur`、`gap_before` 取到毫秒。
+- 中間檔與檢查結果在 `out/<scene>/voice_work/`（各段處理後的 WAV、語音辨識結果 `align.json`／`align_lines.json`、切點說明 `cuts.json`、驗收結果 `check.json`、重新接回去的 `reassembled.wav`），渲染器不需要讀。
