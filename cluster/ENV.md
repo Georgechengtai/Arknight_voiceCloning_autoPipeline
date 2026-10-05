@@ -690,3 +690,12 @@ time     | pia          | route_to_scrp | default_route | claude_api
 **重跑一致性：** 凯尔希、Pith、特蕾西娅各重跑一次（作業 412862–412864，其中兩個排到不同節點），`summary.json` 的 MD5 與前一次完全相同。
 
 **凯尔希的目錄已換成新格式**（49 段，全部可用；舊版 46 段、40 段可用）。切片編號的規則沒變（`CN_043_s2`），但切點不同，同一個編號不一定是同一段。追加測試七、十、十一用的舊版保留在 `work/refs/kalts/refs.round2.json`、`catalog.round2.json`、`segments.round2/`；`round2.py`–`round4.py` 若要重跑需指回這些舊檔。舊版的 `urgentA`、`urgentB`、`plan` 已不存在。
+
+## 追加測試十三：回聽對齊，只做語音辨識（2026-10-05，作業 414696、414703、414710，各約 2–3 分鐘；任務書 `docs/sessions/SC-voice-lines.md`）
+
+- 腳本 `cluster/voice_align.py`＋`voice_align.sh`（叢集副本在 `~/large-data/aktts/`）；由 Mac 端 `tools/voice_cluster.sh` 傳檔、送出、每 60 秒查一次狀態、取回，全程重用一條 SSH 連線。
+- 輸入輸出在 `~/large-data/aktts/work/scenes/act33side_st01_voice_blocks/`（38 段）與 `act33side_st01_voice_lines/`（109 句），各有 `wav/`、`job.json`、`align.json`。音檔是自己合成的成品，16 kHz 單聲道。
+- **新增模型**：whisper large-v3 下載到 `~/large-data/aktts/models/whisper/`（約 3 GB），當第二套辨識用。
+- **坑：whisper 預設用 ffmpeg 讀檔，叢集沒有 ffmpeg**（第一次作業 414696 的 whisper 全部 `FileNotFoundError`）。改成用 soundfile 讀成 16 kHz 的 float32 陣列再丟給 `transcribe()` 就可以。
+- paraformer-zh 加上 `vad_model="fsmn-vad"` 對慢速吟誦反而更差（b02 字錯率 0.05 → 0.24）；不加 VAD 時 50 秒的長段也能一次辨識並回傳逐字時間。
+- 這次沒有改動叢集的環境或設定，只新增上述檔案。
