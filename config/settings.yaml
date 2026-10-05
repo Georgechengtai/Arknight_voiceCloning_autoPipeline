@@ -22,3 +22,10 @@ parse:
 gamedata:
   base_url: https://raw.githubusercontent.com/Kengxxiao/ArknightsGameData/master/zh_CN/gamedata
   excel_tables: [story_review_table, charword_table, character_table]
+
+assets:
+  # PRTS 會重置連續請求：每個請求至少間隔 1 秒（docs/02-data-sources.md §3 行為規範）
+  user_agent: "ArknightsVoicePipeline/0.1 (fan dubbing project, non-commercial)"
+  retries: 3
+  index_max_age_h: 24
+  min_interval_s: {prts.wiki: 1.2, default: 0.2}

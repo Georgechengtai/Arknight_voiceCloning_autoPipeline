@@ -2,9 +2,10 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 
-from . import casting, gamedata, parse
+from . import assets, casting, gamedata, parse
 from .common.paths import OUT_DIR, ROOT
 from .common.settings import load_settings
 
@@ -51,6 +52,35 @@ def cmd_speakers(args) -> int:
     return 0
 
 
+def cmd_assets(args) -> int:
+    scene_ids = [s.scene_id for s in _scenes(args)]
+    fetcher = assets.make_fetcher()
+    idx = assets.load_indexes(fetcher, load_settings()["assets"]["index_max_age_h"])
+    if args.dry_run:
+        rep = assets.dry_run(scene_ids, idx, fetcher if args.verify else None)
+        path = OUT_DIR / "reports" / f"assets_dryrun_{args.scene or args.act}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
+        for kind, c in rep["counts"].items():
+            print(f"{kind:<12} {c['resolved']}/{c['total']}")
+        print(f"解析不到 {len(rep['unresolved'])} 項；改用備援來源 {len(rep['fallback'])} 項；警告 {len(rep['warnings'])} 條"
+              f"{'' if rep['verified'] else '（未連線確認，加 --verify 逐一檢查）'} → {path.relative_to(ROOT)}")
+        for u in rep["unresolved"]:
+            print(f"  缺 {u['kind']} {u['key']}")
+        return 1 if rep["unresolved"] else 0
+    bad = 0
+    for sid in scene_ids:
+        man = assets.run_scene(sid, fetcher, idx)
+        n = {k: len(man[k]) for k in ("backgrounds", "images", "music", "sounds")}
+        n_sprites = sum(len(g["variants"]) for g in man["sprites"].values())
+        print(f"{sid:<22} 背景 {n['backgrounds']} 插圖 {n['images']} 立繪 {n_sprites} 音樂 {n['music']} 音效 {n['sounds']}"
+              f"  缺 {len(man['missing'])}  警告 {len(man['warnings'])}  → out/{sid}/assets_manifest.json")
+        for m in man["missing"]:
+            print(f"  缺 {m['kind']} {m['key']}：{m['reason']}")
+        bad += len(man["missing"])
+    return 1 if bad else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     default_act = load_settings()["parse"]["default_act"]
     p = argparse.ArgumentParser(prog="python -m pipeline", description="明日方舟劇情配音管線")
@@ -69,6 +99,13 @@ def main(argv: list[str] | None = None) -> int:
         s.add_argument("--scene", help="單一場景，如 act33side_st01；省略則處理整個活動")
         s.add_argument("--act", default=default_act)
         s.set_defaults(func=func)
+
+    a = sub.add_parser("assets", help="下載場景素材 → assets/ 與 out/<scene>/assets_manifest.json")
+    a.add_argument("--scene", help="單一場景；省略則處理整個活動")
+    a.add_argument("--act", default=default_act)
+    a.add_argument("--dry-run", action="store_true", help="只解析網址不下載，報告寫到 out/reports/")
+    a.add_argument("--verify", action="store_true", help="配合 --dry-run：逐一連線確認檔案存在（限速，較慢）")
+    a.set_defaults(func=cmd_assets)
 
     args = p.parse_args(argv)
     try:

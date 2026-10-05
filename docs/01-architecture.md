@@ -195,3 +195,24 @@ BB-ST-1 的 143 句配音已完成並經專案擁有者聽過六版（過程與�
 
 - ElevenLabs 的音檔是「同一人連續幾句合成一段」（BB-ST-1 共 38 段涵蓋 109 句），只有段的時間、沒有逐句的時間。要用語音辨識的逐字時間對回原文切開（`cluster/scene_variants.py` 裡有現成的對齊與切點函式）。
 - 沒有背景音樂、音效、Mon3tr 的叫聲。
+
+## 追加 2026-10-05（S2：assets_manifest.json 的契約）
+
+`python -m pipeline assets --scene <scene>` 產出 `out/<scene>/assets_manifest.json`，渲染器只認這份清單，不自己拼路徑。
+
+```json
+{"scene_id": "act33side_st01",
+ "backgrounds": {"bg_laccolith": {"source": "fexli", "url": "...", "path": "assets/bg/bg_laccolith.png", "bytes": 350914, "w": 1024, "h": 576}},
+ "images":      {"49_i01": {"source": "fexli", "url": "...", "path": "assets/image/49_i01.png", "bytes": 1186787, "w": 1600, "h": 900}},
+ "sprites":     {"avg_003_kalts_1": {"pos": {"x": 0.0, "y": 180.0}, "size": {"x": 890.0, "y": 890.0},
+                 "variants": {"avg_003_kalts_1#4$1": {"source": "fexli", "url": "...", "path": "assets/char/avg_003_kalts_1_4_1.png", "bytes": 714434, "w": 1280, "h": 1280}}}},
+ "music":       {"drift_loop": {"source": "prts", "url": "...", "path": "assets/audio/music/drift_loop.mp3", "bytes": 1664984, "dur": 104.046, "index_path": "Sound_Beta_2/Music/act9d0d0/m_avg_drift_loop"}},
+ "sounds":      {"Mon3tr_n": {"source": "prts", "url": "...", "path": "assets/audio/sound/Mon3tr_n.mp3", "bytes": 9631, "dur": 1.176, "index_path": "..."}},
+ "effects": [], "warnings": [], "missing": []}
+```
+
+- 鍵一律是 timeline 事件裡的原字串：`background.image`（以及 `interlude.name`、`gridbg.imagegroup` 以 `/` 拆開的每一段）、`image.image`、`playmusic.intro`／`key`、`playsound.key`。立繪先以 charslot 的 `group` 找組，再以完整的 `name` 找 `variants`。
+- `path` 相對於倉庫根目錄；副檔名以實際下載到的格式為準（備援來源可能是 `.wav`）。
+- `pos`／`size` 是 1280×720 遊戲座標系下的錨點與顯示尺寸（來自 fexli `summary.json`，與 PRTS Data_Link 同源）；`w`／`h` 是圖檔的實際像素。
+- `effects`：這一場用到的特效名（`<指令>:<名字>`），沒有對應檔案。`missing`：`{kind, key, reason}`，渲染時該素材略過（音效靜音）。
+- 來源 `source` ∈ fexli / prts / aceship。每個檔的來源另存 `assets/sources.json`。
