@@ -1,0 +1,166 @@
+<title>巴别塔身份待確認</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap">
+<style>
+/* 版面：單欄問卷。上方固定一條進度列；每條先問題、再選項、最後是像劇本頁的前後文。 */
+:root {
+  --bg: #f3f4f1; --surface: #fbfcfa; --ink: #1d2623; --muted: #5d6965; --line: #d5dad5;
+  --accent: #1f6f66; --accent-ink: #ffffff; --accent-soft: #dcebe7;
+  --mark: #f4e7b8; --warn: #9a4a1c; --script: #f7f5ee;
+  --ui: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --read: "Noto Serif SC", "Songti SC", "SimSun", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141917; --surface: #1c2320; --ink: #e6ebe8; --muted: #9aa7a2; --line: #33403b;
+  --accent: #5fc2b4; --accent-ink: #0d1f1c; --accent-soft: #1f3a35;
+  --mark: #4a4220; --warn: #e2a274; --script: #181e1c; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141917; --surface: #1c2320; --ink: #e6ebe8; --muted: #9aa7a2; --line: #33403b;
+  --accent: #5fc2b4; --accent-ink: #0d1f1c; --accent-soft: #1f3a35;
+  --mark: #4a4220; --warn: #e2a274; --script: #181e1c; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--ui); font-size: 16px; line-height: 1.65; }
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 80px; display: flex; flex-direction: column; gap: 28px; }
+h1 { font-size: 1.6rem; line-height: 1.3; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0; max-width: 38em; }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; background: var(--bg); border-bottom: 1px solid var(--line);
+  padding-block: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.count { font-weight: 700; font-variant-numeric: tabular-nums; }
+.dots { display: flex; gap: 6px; flex-wrap: wrap; }
+.dots a { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--line); color: var(--muted); font-size: .78rem;
+  display: grid; place-items: center; text-decoration: none; font-variant-numeric: tabular-nums; }
+.dots a.done { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.dots a.diff { background: var(--surface); border-color: var(--warn); color: var(--warn); font-weight: 700; }
+.save { margin-left: auto; font-size: .85rem; color: var(--muted); }
+.save.bad { color: var(--warn); }
+
+.item { display: flex; flex-direction: column; gap: 14px; padding-top: 22px; border-top: 1px solid var(--line); scroll-margin-top: 70px; }
+.where { font-size: .82rem; color: var(--muted); letter-spacing: .04em; }
+.item h2 { font-size: 1.2rem; line-height: 1.45; margin: 0; text-wrap: balance; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; padding: 11px 14px; border: 1.5px solid var(--line); border-radius: 10px;
+  background: var(--surface); cursor: pointer; }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.opt input { margin-top: .35em; accent-color: var(--accent); }
+.opt span { min-width: 0; }
+.tag { font-size: .75rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 0 8px; margin-left: 6px; white-space: nowrap; }
+.note { width: 100%; box-sizing: border-box; font: inherit; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line);
+  border-radius: 10px; padding: 9px 12px; }
+.note:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+details.why { color: var(--muted); font-size: .92rem; }
+details.why summary { cursor: pointer; color: var(--accent); width: fit-content; }
+details.why ul { margin: 6px 0 0; padding-left: 1.2em; }
+.script { background: var(--script); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; font-family: var(--read);
+  display: flex; flex-direction: column; gap: 6px; font-size: .98rem; line-height: 1.75; }
+.ln { display: grid; grid-template-columns: 2.6em minmax(0, 1fr); gap: 8px; color: var(--muted); }
+.ln .seq { font-family: var(--ui); font-size: .72rem; text-align: right; padding-top: .45em; font-variant-numeric: tabular-nums; }
+.ln .who { font-family: var(--ui); font-size: .82rem; font-weight: 500; margin-right: .5em; }
+.ln.ask { color: var(--ink); }
+.ln.ask .txt { background: var(--mark); padding: 1px 4px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.skip { font-family: var(--ui); font-size: .82rem; color: var(--muted); padding-left: 3.2em; }
+.done-msg { border: 1.5px solid var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--accent-soft); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <h1>巴别塔：這 11 處是誰在說話？</h1>
+    <p class="lede">全活動 4547 句裡，只有這 11 處我沒把握。每一題第一個選項是我的判斷；你同意就點它，不同意就點別的選項，或在下面的格子寫出應該是誰。黃底的句子是要你確認的，其餘是前後文。選了就會自動存，我讀得到。</p>
+  </header>
+  <div class="bar" id="bar">
+    <span class="count" id="count">已答 0 / 11</span>
+    <nav class="dots" id="dots" aria-label="題目"></nav>
+    <span class="save" id="save" role="status"></span>
+  </div>
+  <main id="list" style="display:flex;flex-direction:column;gap:30px"></main>
+  <div class="done-msg" id="doneMsg" hidden>11 題都答完了。回到對話跟我說一聲「答完了」，我就照你的答案更新身份表。</div>
+</div>
+
+<script>
+const ITEMS = /*ITEMS*/[];
+const answers = {};   // n -> {choice, note}
+let db = null, saving = 0;
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+function setSave(text, bad) { const s = $("save"); s.textContent = text; s.classList.toggle("bad", !!bad); }
+
+function renderItem(it) {
+  const sec = el("section", "item"); sec.id = "q" + it.n;
+  sec.append(el("div", "where", `第 ${it.n} 題 · ${it.where} · ${it.span}`));
+  sec.append(el("h2", null, it.ask));
+  const opts = el("div", "opts"); opts.setAttribute("role", "radiogroup");
+  const all = it.options.concat(["都不是（請在下面寫出是誰）"]);
+  all.forEach((label, i) => {
+    const lab = el("label", "opt");
+    const inp = el("input"); inp.type = "radio"; inp.name = "q" + it.n; inp.id = `q${it.n}-o${i}`; inp.value = String(i);
+    inp.addEventListener("change", () => choose(it.n, i));
+    const sp = el("span", null, label);
+    if (i === 0) sp.append(el("span", "tag", "我的判斷"));
+    lab.append(inp, sp); opts.append(lab);
+  });
+  sec.append(opts);
+  const note = el("input", "note"); note.type = "text"; note.id = `q${it.n}-note`; note.placeholder = "想補充的話寫這裡（可不填）";
+  note.setAttribute("aria-label", `第 ${it.n} 題補充`);
+  let t; note.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => setNote(it.n, note.value), 900); });
+  sec.append(note);
+  const why = el("details", "why"); why.append(el("summary", null, "我為什麼這樣判"));
+  const ul = el("ul"); it.reasons.forEach((r) => ul.append(el("li", null, r))); why.append(ul); sec.append(why);
+  const sc = el("div", "script");
+  it.lines.forEach((l) => {
+    if (l.skip) { sc.append(el("div", "skip", l.skip)); return; }
+    const row = el("div", "ln" + (l.ask ? " ask" : ""));
+    const body = el("div"); body.append(el("span", "who", l.who === "（無名行）" ? "（沒標名字）" : l.who), el("span", "txt", l.text));
+    row.append(el("span", "seq", String(l.seq)), body); sc.append(row);
+  });
+  sec.append(sc);
+  return sec;
+}
+
+function paint() {
+  let n = 0;
+  ITEMS.forEach((it) => {
+    const a = answers[it.n], dot = $("dot" + it.n);
+    const answered = a && a.choice != null;
+    if (answered) n++;
+    dot.className = answered ? (a.choice === 0 ? "done" : "diff") : "";
+    document.querySelectorAll(`input[name="q${it.n}"]`).forEach((r) => { r.checked = answered && Number(r.value) === a.choice; });
+    const note = $(`q${it.n}-note`);
+    if (a && a.note != null && document.activeElement !== note) note.value = a.note;
+  });
+  $("count").textContent = `已答 ${n} / ${ITEMS.length}`;
+  $("doneMsg").hidden = n !== ITEMS.length;
+}
+
+async function persist(n) {
+  const it = ITEMS.find((x) => x.n === n), a = answers[n];
+  const all = it.options.concat(["都不是"]);
+  const body = { item: n, where: it.where, span: it.span, ask: it.ask, choice: a.choice ?? null,
+    choiceLabel: a.choice == null ? null : all[a.choice], agreesWithClaude: a.choice === 0, note: a.note || "", updatedAt: new Date().toISOString() };
+  try { localStorage.setItem("identity-review-" + n, JSON.stringify(a)); } catch (e) {}
+  if (!db) { setSave("只存在這台裝置上，我讀不到；答完請把結果告訴我", true); return; }
+  saving++; setSave("儲存中…");
+  try { await db.doc("answers/q" + String(n).padStart(2, "0")).set(body); saving--; if (!saving) setSave("已儲存"); }
+  catch (e) { saving--; setSave("沒存成功，請再點一次", true); }
+}
+const queue = {};
+function save(n) { queue[n] = (queue[n] || Promise.resolve()).then(() => persist(n)); }
+function choose(n, i) { answers[n] = Object.assign({}, answers[n], { choice: i }); paint(); save(n); }
+function setNote(n, v) { if ((answers[n]?.note || "") === v) return; answers[n] = Object.assign({}, answers[n], { note: v }); save(n); }
+
+ITEMS.forEach((it) => {
+  $("list").append(renderItem(it));
+  const d = el("a", null, String(it.n)); d.href = "#q" + it.n; d.id = "dot" + it.n; d.setAttribute("aria-label", `第 ${it.n} 題`); $("dots").append(d);
+  try { const s = JSON.parse(localStorage.getItem("identity-review-" + it.n)); if (s) answers[it.n] = s; } catch (e) {}
+});
+paint();
+
+(async () => {
+  db = await (window.claude?.use ? window.claude.use("db") : null);
+  if (!db) { setSave("目前沒連上儲存空間，答案只留在這台裝置", true); return; }
+  db.collection("answers").onSnapshot((snap) => {
+    snap.docs.forEach((d) => { const b = d.data(); if (b && b.item && !d.metadata.hasPendingWrites) answers[b.item] = { choice: b.choice, note: b.note }; });
+    paint(); if (!saving) setSave(snap.empty ? "" : "已儲存");
+  }, () => setSave("儲存空間斷線了，重新整理頁面試試", true));
+})();
+</script>
