@@ -98,3 +98,13 @@
 - `Aceship/Arknight-Images`：`avg/backgrounds`、`avg/characters` 僅有舊素材，巴別塔背景與 `avg_npc_13xx` 立繪全部 404。
 - `yuanyan3060/ArknightsGameResource`：無 avg 劇情素材。
 - `050644zf/ArknightsStoryTextReader`：純文字閱讀器（Vue），無渲染器；其解析腳本在 `050644zf/ASTR-Script`，可作解析器參考（MIT）。
+
+## 追加 2026-10-05（S2 在 Mac 上實測的結果）
+
+- **torappu 音訊網址規則（實測定案）**：`https://torappu.prts.wiki/assets/` ＋ Data_Audio 的值**整條轉小寫**、`sound_beta_2` 換成 `audio` ＋ `.mp3`。大小寫敏感：`audio/Music/...`、`p_atk_Mon3tr_n` 這類保留大寫的寫法回 404。同一路徑有 `.wav` 但下載極慢，不採用。
+- 音訊鍵查 Data_Audio 時以索引的大小寫為準（`Mon3tr_n`、`char_Mon3tr`、`p_skill_Mon3trburst`）；索引裡沒有只差大小寫的重複鍵。
+- media.prts.wiki 可直接下載；網址中的 `$` 要寫成 `%24`。
+- 巴別塔全 23 場逐一連線確認：背景 62（48 張 `background`＋`interlude` 2 張＋`gridbg` 分片 12 張）、插圖 30、立繪 199、音樂 72、音效 150，全部命中。fexli 缺 4 張 `gridbg` 分片（`38_g20_skyblue_r1/r2`、`38_g21_skystarry_r1/r2`），PRTS 有；音訊 222/222 都在 torappu，沒有用到 Aceship。
+- 舊背景（`bg_*`）原檔只有 1024×576，fexli 與 PRTS 相同。
+- fexli 的立繪每個變體都是完整圖；`char_empty` 是清空插入框用的名字，不是圖。
+- 下載器的 User-Agent 只寫專案名，不含聯絡方式（專案擁有者決定）。
