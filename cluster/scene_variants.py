@@ -2,7 +2,7 @@
 
     cd $AKTTS_ROOT/index-tts && python ../scene_variants.py <job.json>
 job.json：{"scene": 輸出目錄名, "items": [{"tag", "char", "ref" 或 "ref_path", "emo_text"（null＝不加情緒描述）,
-          "emo_alpha"（預設 0.3）, "tail"（墊在最後、合成後丟掉的一句）, "lines": [{"line_id", "text"}, ...]}]}
+          "emo_alpha"（預設 0.3）, "seed"（預設 1234）, "tail"（墊在最後、合成後丟掉的一句）, "lines": [{"line_id", "text"}, ...]}]}
 一個 item 有多句時，整段一次合成，再用語音辨識的逐字時間對回原文，在句與句之間最安靜的地方切開。
 tail 的用途：模型常在最後一個字還沒收完音就停止輸出（句尾是「……」時尤其明顯），聽起來像話沒說完。
 在後面墊一句再切掉，真正的最後一句就能完整收尾。
@@ -62,10 +62,10 @@ def main(job_path):
         kw = dict(use_emo_text=True, emo_text=it["emo_text"], emo_alpha=it.get("emo_alpha", 0.3), use_random=False) if it.get("emo_text") else {}
         lines = it["lines"] + ([dict(line_id=None, text=it["tail"])] if it.get("tail") else [])
         whole = f"{out}/wav/_whole_{lines[0]['line_id']}_{it['tag']}.wav"
-        torch.manual_seed(1234)
+        torch.manual_seed(it.get("seed", 1234))
         tts.infer(spk_audio_prompt=ref_path, text="".join(l["text"] for l in lines), output_path=whole, verbose=False, **kw)
         y, sr = sf.read(whole)
-        cuts, how = [0], "single"
+        cuts, how, last_ms = [0], "single", {}
         if len(lines) > 1:
             res = asr.generate(input=whole)[0]
             toks, ts = res["text"].split(), res.get("timestamp") or []
@@ -74,8 +74,9 @@ def main(job_path):
             hyp = [u for t in toks for u in (units(t) or ["_"])][:len(ts)] if ts and len(ts) == len(toks) else None
             if hyp:
                 pos, k, how = align(flat, hyp), 0, "asr"
-                for us in ref_units[:-1]:
+                for n_line, us in enumerate(ref_units[:-1]):
                     k += len(us)
+                    last_ms[n_line] = ts[pos[k - 1]][1] - ts[pos[k - 1]][0]     # 這句最後一個字念了多久
                     a, b = ts[pos[k - 1]][1], ts[min(pos[k], len(ts) - 1)][0]
                     if b - a < 60:      # 兩句黏在一起，或後一句沒被認出來：往後找 0.5 秒
                         b = a + 500
@@ -90,7 +91,7 @@ def main(job_path):
                     k += len(us)
                     cuts.append(int(len(y) * k / len(flat)))
         cuts.append(len(y))
-        for l, a, b in zip(lines, cuts, cuts[1:]):
+        for n_line, (l, a, b) in enumerate(zip(lines, cuts, cuts[1:])):
             if l["line_id"] is None:
                 continue
             path = f"{out}/wav/{l['line_id']}_{it['tag']}.wav"
@@ -102,7 +103,8 @@ def main(job_path):
             heard = asr.generate(input=path)[0]["text"].replace(" ", "")
             dur = len(seg) / sr
             row = dict(line_id=l["line_id"], tag=it["tag"], split=how, dur=round(dur, 2),
-                       rate=round(max(len(units(l["text"])), 1) / dur, 2), cer=round(cer(l["text"], heard), 3), heard=heard)
+                       rate=round(max(len(units(l["text"])), 1) / dur, 2), cer=round(cer(l["text"], heard), 3), heard=heard,
+                       last_char_ms=last_ms.get(n_line))
             qc.append(row)
             print(row, flush=True)
         os.remove(whole)
