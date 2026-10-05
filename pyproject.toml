@@ -15,12 +15,13 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+render = ["playwright>=1.49"]   # 另需 `python -m playwright install chromium`，以及系統裝有 ffmpeg
 
 [tool.setuptools.packages.find]
 include = ["pipeline*"]
 
 [tool.setuptools.package-data]
-pipeline = ["schemas/*.json"]
+pipeline = ["schemas/*.json", "render/web/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

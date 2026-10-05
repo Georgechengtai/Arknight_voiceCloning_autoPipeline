@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<title>劇情渲染器</title>
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  canvas { display: block; }
+  body.preview canvas { width: 100vw; height: auto; max-height: calc(100vh - 44px); object-fit: contain; }
+  #bar { display: none; height: 44px; align-items: center; gap: 12px; padding: 0 12px; color: #ddd; font: 14px sans-serif; }
+  body.preview #bar { display: flex; }
+  #pos { flex: 1; }
+</style>
+</head>
+<body>
+<canvas id="stage" width="1920" height="1080"></canvas>
+<div id="bar"><button id="play">播放</button><input id="pos" type="range" min="0" value="0" step="33"><span id="clock"></span></div>
+<script src="renderer.js"></script>
+<script>
+// ?schedule=<schedule.json 的網址>：載入後 window.renderer.ready 完成。
+// 加上 &preview=1 會出現拖曳條與播放鍵（給人看的，出片不用）；&audio=<音檔網址> 播放時同步放聲音。
+(function () {
+  const q = new URLSearchParams(location.search);
+  const url = q.get("schedule");
+  if (!url) return;   // 沒給網址：由呼叫端直接呼叫 renderer.load(schedule)
+  renderer.ready = fetch(url).then((r) => r.json()).then((s) => renderer.load(s, q.get("base") || "/"));
+  if (!q.get("preview")) return;
+  document.body.classList.add("preview");
+  renderer.ready.then(() => {
+    const total = renderer.schedule.duration * 1000;
+    const pos = document.getElementById("pos"), clock = document.getElementById("clock"), play = document.getElementById("play");
+    const audio = q.get("audio") ? new Audio(q.get("audio")) : null;
+    let t = 0, playing = false, origin = 0;
+    pos.max = total;
+    const show = () => {
+      renderer.seek(t);
+      pos.value = t;
+      clock.textContent = (t / 1000).toFixed(1) + " / " + (total / 1000).toFixed(1) + " 秒";
+    };
+    const tick = () => {
+      if (!playing) return;
+      t = audio ? audio.currentTime * 1000 : performance.now() - origin;
+      if (t >= total) { t = total; playing = false; play.textContent = "播放"; }
+      show();
+      requestAnimationFrame(tick);
+    };
+    play.onclick = () => {
+      playing = !playing;
+      play.textContent = playing ? "暫停" : "播放";
+      origin = performance.now() - t;
+      if (audio) { audio.currentTime = t / 1000; playing ? audio.play() : audio.pause(); }
+      tick();
+    };
+    pos.oninput = () => { t = +pos.value; origin = performance.now() - t; if (audio) audio.currentTime = t / 1000; show(); };
+    show();
+  });
+})();
+</script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import sys
 from . import casting, gamedata, parse
 from .common.paths import OUT_DIR, ROOT
 from .common.settings import load_settings
+from .render import cli as render_cli
 
 
 def _scenes(args) -> list[gamedata.Scene]:
@@ -69,6 +70,29 @@ def main(argv: list[str] | None = None) -> int:
         s.add_argument("--scene", help="單一場景，如 act33side_st01；省略則處理整個活動")
         s.add_argument("--act", default=default_act)
         s.set_defaults(func=func)
+
+    r = sub.add_parser("render", help="timeline＋語音清單＋素材清單 → out/<scene>/<scene>.mp4 與 _nobgm.mp4")
+    r.add_argument("--scene", required=True)
+    r.add_argument("--voice-manifest", help="語音清單的路徑；省略則用 out/<scene>/voice_manifest.json")
+    r.add_argument("--tag", default="", help="這次輸出的標記：工作檔與影片改放 out/<scene>/render-<tag>/（佔位清單會自動標 placeholder）")
+    r.add_argument("--intro-card", action="store_true", help="片頭加「本片語音為 AI 生成」字卡")
+    r.add_argument("--no-bgm", action="store_true", help="只出沒有背景音樂的版本（預設兩個版本都出）")
+    r.add_argument("--schedule-only", action="store_true", help="只算時間表")
+    r.add_argument("--audio-only", action="store_true", help="只做時間表與音軌，不畫畫面")
+    r.add_argument("--workers", type=int, default=1, help="同時開幾個瀏覽器分段畫")
+    r.add_argument("--keep-frames", action="store_true", help="把每一幀另存成圖檔（除錯用）")
+    r.add_argument("--force", action="store_true", help="直接覆蓋同名的舊影片（預設先把舊的改名留著）")
+    r.set_defaults(func=render_cli.cmd_render)
+
+    rp = sub.add_parser("render-placeholder", help="語音清單還沒出來時：生一份佔位清單到 out/<scene>/placeholder/")
+    rp.add_argument("--scene", required=True)
+    rp.add_argument("--silent", action="store_true", help="不用 say，全部用靜音佔位")
+    rp.set_defaults(func=render_cli.cmd_render_placeholder)
+
+    rv = sub.add_parser("render-preview", help="開本機預覽頁（拖曳條＋播放），看時間表畫出來的樣子")
+    rv.add_argument("--scene", required=True)
+    rv.add_argument("--tag", default="")
+    rv.set_defaults(func=render_cli.cmd_render_preview)
 
     args = p.parse_args(argv)
     try:

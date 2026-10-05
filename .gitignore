@@ -22,3 +22,6 @@ __pycache__/
 logs/
 *.egg-info/
 .pytest_cache/
+
+# 渲染器測試的基準圖（色塊佔位畫面，不含遊戲素材）
+!tests/baseline/*.png
