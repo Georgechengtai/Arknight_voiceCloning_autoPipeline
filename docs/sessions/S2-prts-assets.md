@@ -39,3 +39,10 @@
 
 ## 完成記錄
 （session 結束時填寫）
+
+## 補充 2026-10-05（開工前必讀）
+- 在 worktree `.claude/worktrees/assets` 工作。worktree 裡的 `out`、`data`、`assets`、`.venv` 都是連到主倉庫的捷徑（不入庫），所以 `out/act33side_st01/timeline.json` 已經在；下載的素材直接落在主倉庫的 `assets/`，其他 session 也看得到。
+- timeline 的實際格式以 `pipeline/schemas/timeline.schema.json` 與 `docs/01-architecture.md` 的兩節追加為準。
+- BB-ST-1 會用到的指令數量：charslot 103、blocker 41、playsound 18、background 4、image 4、playmusic 3，另有 backgroundtween、imagetween 各 1。
+- 這一輪的目標是「第一支完整影片」：BB-ST-1 的素材 100% 到位優先，全 23 場的 dry-run 其次。
+- 專案擁有者提過 Mon3tr 的叫聲、未知語言的台詞可以用音效當彩蛋：如果素材索引裡找得到對應的音效請記在完成記錄裡，不必下載。

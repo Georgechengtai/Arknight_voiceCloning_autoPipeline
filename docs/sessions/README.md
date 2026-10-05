@@ -36,3 +36,19 @@ S0 隨時可做。S4 在 S0 與 S3 之後。S6 最後。
 S0 與 S0b 已完成。已定案的合成做法與各項決定見 `docs/00-decisions.md` 的追加記錄。
 
 合併時注意：`cluster/ENV.md` 與 `docs/00-decisions.md` 多個 session 都會追加，請只在檔尾加新的一節，不要改寫既有內容。
+
+## 2026-10-05 更新：第一支完整影片（BB-ST-1）要開的三個 session
+
+BB-ST-1 的配音已完成並經專案擁有者認可（六版，見 `docs/00-decisions.md`）。上面三個 session（`s1-parser`、`identity-table`、`ref-catalogs`）都已合併。現在開三個彼此不相依的，各自一個 worktree，做完合回 master，再由整合 session（S6）出片。
+
+| worktree／分支 | 任務書 | 做什麼 | 用到叢集 | 需要專案擁有者 |
+|---|---|---|---|---|
+| `assets` | `S2-prts-assets.md`（含文末補充） | 下載 BB-ST-1 的背景、立繪、插圖、BGM、音效，產出素材清單 | 否 | 否 |
+| `renderer` | `S5-renderer.md`（含文末補充） | 時間表、畫面渲染、逐幀截圖、混音出片 | 否 | 否 |
+| `voice-lines` | `SC-voice-lines.md` | 把現有配音切成逐句檔、產出語音清單、回聽比對 ElevenLabs 的段落 | 是 | CUHK VPN 要他人在 Mac 前才連得上 |
+
+三者的介面：`out/<scene>/timeline.json`（已有）、`out/<scene>/assets_manifest.json`（`assets` 產出）、`out/<scene>/voice_manifest.json`（`voice-lines` 產出）。`renderer` 在另外兩份還沒出來時用佔位資料開發。
+
+每個 worktree 裡的 `out`、`data`、`assets`、`.venv` 是連到主倉庫同名目錄的捷徑（已列入 `.git/info/exclude`），所以三個 session 看到的是同一份資料，產出也直接落在主倉庫。**不要刪除或覆蓋 `out/act33side_st01/` 裡既有的檔案**（那是認可過的成品與各版本的音檔），只新增。
+
+合併時注意同上：`docs/00-decisions.md`、`docs/01-architecture.md`、`cluster/ENV.md` 只在檔尾加新的一節。

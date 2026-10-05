@@ -6,9 +6,9 @@
 speakers:
   "特蕾西娅":
     role: operator
-    line_count: 713
-    voiced_lines: 676
-    kinds: {dialogue: 671, monologue: 5, silent: 37}
+    line_count: 715
+    voiced_lines: 678
+    kinds: {dialogue: 673, monologue: 5, silent: 37}
     aliases: ["？？？"]
     sprite_groups: [avg_npc_1296_1]
     scenes: [01_beg, 01_end, 02_beg, 02_end, 03_beg, 03_end, 04_end, 05_beg, 06_beg, 06_end, 07_beg, 07_end, 08_beg, 08_end, 09_beg, 09_end, 10_beg, 10_end, st01, st02, st03]
@@ -17,9 +17,9 @@ speakers:
     note: "劇本名「特蕾西娅」，幹員名「魔王」"
   "旁白":
     role: narrator
-    line_count: 685
-    voiced_lines: 684
-    kinds: {narration: 684, silent: 1}
+    line_count: 689
+    voiced_lines: 688
+    kinds: {narration: 688, silent: 1}
     aliases: []
     sprite_groups: []
     scenes: [01_beg, 01_end, 02_beg, 02_end, 03_beg, 03_end, 04_beg, 04_end, 05_beg, 05_end, 06_beg, 06_end, 07_beg, 07_end, 08_beg, 08_end, 09_beg, 09_end, 10_beg, 10_end, st01, st02, st03]
@@ -33,9 +33,9 @@ speakers:
     scenes: [04_beg, 04_end, 05_beg, 06_beg, 06_end, 07_beg, 08_beg, 08_end, 09_end, 10_beg, st02, st03]
   "特雷西斯":
     role: npc_major
-    line_count: 328
-    voiced_lines: 313
-    kinds: {dialogue: 313, silent: 15}
+    line_count: 337
+    voiced_lines: 322
+    kinds: {dialogue: 322, silent: 15}
     aliases: ["？？？"]
     sprite_groups: [avg_npc_1297_1]
     scenes: [01_beg, 01_end, 02_beg, 02_end, 03_beg, 03_end, 05_beg, 07_beg, 07_end, 08_end, 10_end, st01]
@@ -81,12 +81,20 @@ speakers:
     note: "本活動中是幼年阿米娅；幹員語音是長大後的阿米娅。另有升變形態 char_1001_amiya2、char_1037_amiya3，預設取本體"
   "尤莉叶":
     role: npc_major
-    line_count: 102
-    voiced_lines: 98
-    kinds: {dialogue: 98, silent: 4}
-    aliases: ["刺杀者", "曼弗雷德", "特雷西斯", "？？？"]
-    sprite_groups: [avg_npc_1299_1, avg_npc_1297_1]
+    line_count: 93
+    voiced_lines: 90
+    kinds: {dialogue: 90, silent: 3}
+    aliases: ["刺杀者", "？？？"]
+    sprite_groups: [avg_npc_1299_1]
     scenes: [05_beg, 06_beg, 08_beg, 08_end, st01]
+  "曼弗雷德":
+    role: npc_major
+    line_count: 80
+    voiced_lines: 73
+    kinds: {dialogue: 73, silent: 7}
+    aliases: []
+    sprite_groups: [avg_npc_404_1]
+    scenes: [03_beg, 05_beg, 05_end, 07_end, 08_end, st01]
   "奥达":
     role: operator
     line_count: 77
@@ -97,14 +105,6 @@ speakers:
     scenes: [03_beg, 03_end, 05_end, 08_beg, st02]
     operator_char_id: char_4131_odda
     operator_name: "奥达"
-  "曼弗雷德":
-    role: npc_major
-    line_count: 77
-    voiced_lines: 71
-    kinds: {dialogue: 71, silent: 6}
-    aliases: []
-    sprite_groups: [avg_npc_404_1]
-    scenes: [03_beg, 05_beg, 05_end, 07_end, 08_end]
   "Ace":
     role: npc_major
     line_count: 65
@@ -164,17 +164,6 @@ speakers:
     aliases: ["“老师”"]
     sprite_groups: [avg_npc_1308_1, avg_npc_1304_1, avg_4131_odda_1]
     scenes: [03_beg, 03_end]
-  "阿斯卡纶（幼年）":
-    role: operator
-    line_count: 44
-    voiced_lines: 38
-    kinds: {dialogue: 34, narration: 4, silent: 6}
-    aliases: ["特蕾西娅", "特雷西斯", "阿斯卡纶", "？？？"]
-    sprite_groups: [avg_npc_1301_1]
-    scenes: [02_end, 03_beg]
-    same_person_as: "阿斯卡纶"
-    variant: "幼年"
-    same_person_operator_char_id: char_4132_ascln
   "暴行":
     role: operator
     line_count: 43
@@ -214,6 +203,17 @@ speakers:
     scenes: [02_beg, 02_end, 03_beg]
     same_person_as: "曼弗雷德"
     variant: "幼年"
+  "阿斯卡纶（幼年）":
+    role: operator
+    line_count: 35
+    voiced_lines: 29
+    kinds: {dialogue: 29, silent: 6}
+    aliases: ["阿斯卡纶", "？？？"]
+    sprite_groups: [avg_npc_1301_1]
+    scenes: [02_end, 03_beg]
+    same_person_as: "阿斯卡纶"
+    variant: "幼年"
+    same_person_operator_char_id: char_4132_ascln
   "巴别塔医生":
     role: npc_minor
     line_count: 29

@@ -68,19 +68,19 @@ level_act33side_st01	66	特蕾西娅殿下交给我们的任	刺杀者	尤莉叶
 level_act33side_st01	67	我们不再向你举剑。萨卡兹	刺杀者	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
 level_act33side_st01	68	……我们，向你效忠，摄政	刺杀者	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
 level_act33side_st01	69	只要你仍然抱有对萨卡兹的	刺杀者	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	70	即使你们险些毁掉了我们在	曼弗雷德	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
+level_act33side_st01	70	即使你们险些毁掉了我们在	曼弗雷德	曼弗雷德	dialogue	high	劇本顯示名；立繪 avg_npc_404_1
 level_act33side_st01	71	如果军事委员会决定让我们	刺杀者	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
 level_act33side_st01	72	只要这能带来更好的结果…	刺杀者	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
 level_act33side_st01	73	那便如她所愿。	刺杀者	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	74	你们方才还是险些葬送计划	曼弗雷德	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	75	曼弗雷德。	特雷西斯	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	76	……	曼弗雷德	尤莉叶	silent	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名；只有標點或括號內的動作／叫聲描述，沒有可念的字
-level_act33side_st01	77	“如她所愿”，是吗。	特雷西斯	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	78	你的名字，刽子手。	特雷西斯	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
+level_act33side_st01	74	你们方才还是险些葬送计划	曼弗雷德	曼弗雷德	dialogue	high	劇本顯示名；立繪 avg_npc_404_1
+level_act33side_st01	75	曼弗雷德。	特雷西斯	特雷西斯	dialogue	high	劇本顯示名；立繪 avg_npc_1297_1
+level_act33side_st01	76	……	曼弗雷德	曼弗雷德	silent	high	劇本顯示名；立繪 avg_npc_404_1；只有標點或括號內的動作／叫聲描述，沒有可念的字
+level_act33side_st01	77	“如她所愿”，是吗。	特雷西斯	特雷西斯	dialogue	high	劇本顯示名；立繪 avg_npc_1297_1
+level_act33side_st01	78	你的名字，刽子手。	特雷西斯	特雷西斯	dialogue	high	劇本顯示名；立繪 avg_npc_1297_1
 level_act33side_st01	79	尤莉叶。	刺杀者	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	80	我会记住你的名字，也会交	特雷西斯	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	81	卫兵，刺客，佣兵，这场血	特雷西斯	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
-level_act33side_st01	82	我要你们拆碎维多利亚的钢	特雷西斯	尤莉叶	dialogue	high	立繪 avg_npc_1299_1；第 79 句自報名字「尤莉叶」，第 83 句起改顯示本名
+level_act33side_st01	80	我会记住你的名字，也会交	特雷西斯	特雷西斯	dialogue	high	劇本顯示名；立繪 avg_npc_1297_1
+level_act33side_st01	81	卫兵，刺客，佣兵，这场血	特雷西斯	特雷西斯	dialogue	high	劇本顯示名；立繪 avg_npc_1297_1
+level_act33side_st01	82	我要你们拆碎维多利亚的钢	特雷西斯	特雷西斯	dialogue	high	劇本顯示名；立繪 avg_npc_1297_1
 level_act33side_st01	83	这是军事委员会削弱伦蒂尼	尤莉叶	尤莉叶	dialogue	high	劇本顯示名；立繪 avg_npc_1299_1
 level_act33side_st01	84	曼弗雷德会看好你们。	特雷西斯	特雷西斯	dialogue	high	劇本顯示名；立繪 avg_npc_1297_1
 level_act33side_st01	85	我们是不是，不可能活着离	尤莉叶	尤莉叶	dialogue	high	劇本顯示名；立繪 avg_npc_1299_1
@@ -837,20 +837,20 @@ level_act33side_02_end	41	特雷西斯看到了一个孩子。		旁白	narration
 level_act33side_02_end	42	特雷西斯摘下手甲，赤手没		旁白	narration	high	無名行，預設旁白
 level_act33side_02_end	43	烟雾散去，他被血丝染红的		旁白	narration	high	無名行，預設旁白
 level_act33side_02_end	44	（含糊不清的发音）你……	？？？	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	45	你为什么在这？	特雷西斯	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
+level_act33side_02_end	45	你为什么在这？	特雷西斯	特雷西斯	dialogue	high	劇本顯示名
 level_act33side_02_end	46	（含糊不清的发音）家。你	？？？	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
 level_act33side_02_end	47	（含糊不清的发音）你！闯	？？？	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	48	孩子用力从特雷西斯手中抽		阿斯卡纶（幼年）	narration	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	49	生于荒野，无惧荒野，孩子		阿斯卡纶（幼年）	narration	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	50	你想杀我？	特雷西斯	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
+level_act33side_02_end	48	孩子用力从特雷西斯手中抽		旁白	narration	high	無名行，預設旁白
+level_act33side_02_end	49	生于荒野，无惧荒野，孩子		旁白	narration	high	無名行，預設旁白
+level_act33side_02_end	50	你想杀我？	特雷西斯	特雷西斯	dialogue	high	劇本顯示名
 level_act33side_02_end	51	（含糊不清的发音）煞，撒	？？？	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	52	没有人教过她怎么说话。她	特蕾西娅	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	53	……特雷西斯？	特蕾西娅	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	54	特雷西斯俯瞰着瘦削的生命		阿斯卡纶（幼年）	narration	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	55	刀，该这么拿。	特雷西斯	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
+level_act33side_02_end	52	没有人教过她怎么说话。她	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名
+level_act33side_02_end	53	……特雷西斯？	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名
+level_act33side_02_end	54	特雷西斯俯瞰着瘦削的生命		旁白	narration	high	無名行，預設旁白
+level_act33side_02_end	55	刀，该这么拿。	特雷西斯	特雷西斯	dialogue	high	劇本顯示名
 level_act33side_02_end	56	……	？？？	阿斯卡纶（幼年）	silent	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場；只有標點或括號內的動作／叫聲描述，沒有可念的字
 level_act33side_02_end	57	（含糊不清的发音）你！	？？？	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
-level_act33side_02_end	58	孩子看着特雷西斯伸出的手		阿斯卡纶（幼年）	narration	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
+level_act33side_02_end	58	孩子看着特雷西斯伸出的手		旁白	narration	high	無名行，預設旁白
 level_act33side_02_end	59	（含糊不清的发音）……我	？？？	阿斯卡纶（幼年）	dialogue	high	幼年阿斯卡纶：風暴中被特雷西斯撿到的孩子，第 69 句得名「阿斯卡纶」，第 172 句起以本名與幼年立繪 avg_npc_1301_1 登場
 level_act33side_02_end	60	特雷西斯看到了特蕾西娅的		旁白	narration	high	無名行，預設旁白
 level_act33side_02_end	61	预言。		旁白	narration	high	無名行，預設旁白

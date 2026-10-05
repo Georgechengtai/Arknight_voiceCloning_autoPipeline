@@ -161,3 +161,37 @@ CER（字錯率）閾值預設 0.10；`flag` 項目列入人工聽審。
 - 一般指令事件是 `{i, cmd, args}`；`args` 的鍵一律小寫。charslot 與 charactercutin 帶 name 時多出 `group`、`face`、`body`。未知指令多一個 `raw`；解析失敗的行是 `cmd: "_unparsed"`，帶 `raw`、`error`、`src_line`。
 - 帶文字的 `[Subtitle]` 是 `kind: subtitle` 的 line；無參數的 `[subtitle]` 是清除字幕的指令事件。`[Decision]` 目前是指令事件，不是 line。
 - 遊戲資料的實際位置：`data/gamedata/excel/<表>.json`、`data/gamedata/story/<storyTxt>.txt`。
+
+## 追加 2026-10-05（BB-ST-1 配音完成後：語音軌的契約與節奏規則的修訂）
+
+BB-ST-1 的 143 句配音已完成並經專案擁有者聽過六版（過程與結論見 `docs/00-decisions.md` 當日各節）。實作與上面的原設計有幾處不同，以這一節為準。
+
+### 語音的交付格式：`out/<scene>/voice_manifest.json` ＋ `out/<scene>/voice/<line_id>.wav`
+
+原設計的 `tts_manifest.json`／`audio/<line_id>.wav`／`cluster/tts_batch.py` 沒有照做。實際做法是「導演表 → 兩種引擎各自合成 → 切成逐句檔」，渲染器只認下面這份清單：
+
+```json
+{"scene": "act33side_st01", "sample_rate": 44100,
+ "lines": [
+  {"line_id": "act33side_st01_0001", "speaker": "旁白", "engine": "elevenlabs", "path": "voice/act33side_st01_0001.wav", "dur": 4.52, "gap_before": null},
+  {"line_id": "act33side_st01_s002", "speaker": "梦中的巨人", "engine": "elevenlabs", "path": "voice/act33side_st01_s002.wav", "dur": 3.10, "gap_before": null},
+  {"line_id": "act33side_st01_0020", "speaker": "阿斯卡纶", "engine": null, "path": null, "dur": 0, "gap_before": null}
+ ]}
+```
+
+- 每個「要顯示文字的行」一筆，順序＝播放順序：timeline 的 line，加上帶文字的字卡（編號 `<scene>_s###`，見 `pipeline/stickers.py`）。清單由 `tools/scene_lines.py` 的結果加上音檔資訊組成。
+- 不配音的行（「……」、叫聲描述、未知語言、只有標點的字卡）`path` 為 null、`dur` 為 0，畫面照常顯示。
+- 音檔：單聲道 44.1 kHz WAV，已去頭去尾、句尾留 0.08 秒並淡出 0.06 秒、音量已統一（有聲部分約 -20 dB）。渲染端不要再做音量正規化。
+- `gap_before`：導演表指定「這句開口前要留幾秒」（換場、需要留白的告別等）；null 表示用預設。
+
+### 節奏規則（取代上面「line 有音訊」那一條）
+
+- 一句的顯示區間＝開口前的間隔＋音檔長度。開口前的間隔：`gap_before` 有值就用它；否則**同一人接著說 0.8 秒、換人說話 0.6 秒**（專案擁有者的結論：兩句帶感情的話緊貼著聽起來就是棒讀）。全場第一句為 0。
+- 不配音的行：停留 1.0 秒（原設計按字數算，試聽時用的是固定 1.0 秒）。
+- 字卡現在是有聲的：字卡的文字照腳本的位置與時機顯示，停留時間至少要蓋住它的語音。同一張字卡若腳本的顯示時間比語音短，以語音為準往後順延。
+- 以上間隔是整場試聽（純音軌）時定的。加上畫面、BGM 之後是否仍合適，由整合階段的全片審看決定，數值請做成可調設定。
+
+### 目前還沒有、需要補的東西
+
+- ElevenLabs 的音檔是「同一人連續幾句合成一段」（BB-ST-1 共 38 段涵蓋 109 句），只有段的時間、沒有逐句的時間。要用語音辨識的逐字時間對回原文切開（`cluster/scene_variants.py` 裡有現成的對齊與切點函式）。
+- 沒有背景音樂、音效、Mon3tr 的叫聲。

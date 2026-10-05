@@ -1,0 +1,93 @@
+scene	sseq	line_id	text_head	identity	kind	confidence	basis
+level_act33side_01_beg	1	act33side_01_beg_s001	六十四年前	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_01_beg	2	act33side_01_beg_s002	1030年秋	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_01_end	1	act33side_01_end_s001	看到高卢帝国在所谓“核心	旁白	narration	high	接續旁白「他们从魔王的双眼中看到了毁灭，看…」的句子
+level_act33side_01_end	2	act33side_01_end_s002	看到号称“世界之都”的林	旁白	narration	high	接續旁白「他们从魔王的双眼中看到了毁灭，看…」的句子
+level_act33side_02_beg	1	act33side_02_beg_s001	二十六年前	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_02_beg	2	act33side_02_beg_s002	1068年秋	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_03_beg	1	act33side_03_beg_s001	八年前	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_03_beg	2	act33side_03_beg_s002	1086年夏	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_03_end	1	act33side_03_end_s001	魔王带来足以果腹的食物与	旁白	narration	high	旁白描寫街上人群對魔王的兩種看法
+level_act33side_03_end	2	act33side_03_end_s002	魔王无视人民遭受的压迫与	旁白	narration	high	旁白描寫街上人群對魔王的兩種看法
+level_act33side_04_end	1	act33side_04_end_s001	新的道路正在打开。	博士	monologue	high	博士「我……」說不下去之後出現的兩張字卡，是他沒說出口的念頭（專案擁有者 2026-10-05 確認）
+level_act33side_04_end	2	act33side_04_end_s002	一条自毁之路。	博士	monologue	high	博士「我……」說不下去之後出現的兩張字卡，是他沒說出口的念頭（專案擁有者 2026-10-05 確認）
+level_act33side_06_end	1	act33side_06_end_s001	源石必须改写一切。	博士	monologue	high	特蕾西娅以魔王之力看見的博士記憶，前後的字幕在身份表已判為博士
+level_act33side_06_end	2	act33side_06_end_s002	唯得此法，存在方有价值。	博士	monologue	high	特蕾西娅以魔王之力看見的博士記憶，前後的字幕在身份表已判為博士
+level_act33side_06_end	3	act33side_06_end_s003	在百年千年之后，我们所目	博士	monologue	high	特蕾西娅以魔王之力看見的博士記憶，前後的字幕在身份表已判為博士
+level_act33side_08_end	1	act33side_08_end_s001	倒计时	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	2	act33side_08_end_s002	2时7分21秒	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	3	act33side_08_end_s003	倒计时	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	4	act33side_08_end_s004	1时33分48秒	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	5	act33side_08_end_s005	倒计时	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	6	act33side_08_end_s006	49分59秒	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	7	act33side_08_end_s007	倒计时	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	8	act33side_08_end_s008	22分48秒	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	9	act33side_08_end_s009	倒计时	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	10	act33side_08_end_s010	12分57秒	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	11	act33side_08_end_s011	内部序列开始检索，检索到	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	12	act33side_08_end_s012	已验证。权限正常。	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	13	act33side_08_end_s013	欢迎您，Dr.博士。	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	14	act33side_08_end_s014	已进入（全舰防御系统）。	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	15	act33side_08_end_s015	那是传送门破碎的光火，像	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	16	act33side_08_end_s016	直到数个世纪后才会消散于	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	17	act33side_08_end_s017	群星从我们所站立的地方远	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	18	act33side_08_end_s018	但塔卫二的航船还是来到了	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	19	act33side_08_end_s019	那是生命。	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	20	act33side_08_end_s020	那是我们在末日后一度失去	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	21	act33side_08_end_s021	？？？		silent	high	只有標點，不配音
+level_act33side_08_end	22	act33side_08_end_s022	我们至今仍未明白生命是如	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	23	act33side_08_end_s023	但我想，我们都应该歌颂万	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	24	act33side_08_end_s024	源石是我们谱下的歌谱，是	博士	monologue	high	字幕「看吧。」引出的一串字卡，SA 已判定為博士的回憶
+level_act33side_08_end	25	act33side_08_end_s025	是否确认关闭全舰防御系统	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	26	act33side_08_end_s026	……		silent	high	只有標點，不配音
+level_act33side_08_end	27	act33side_08_end_s027	……		silent	high	只有標點，不配音
+level_act33side_08_end	28	act33side_08_end_s028	……		silent	high	只有標點，不配音
+level_act33side_08_end	29	act33side_08_end_s029	……		silent	high	只有標點，不配音
+level_act33side_08_end	30	act33side_08_end_s030	……		silent	high	只有標點，不配音
+level_act33side_08_end	31	act33side_08_end_s031	……		silent	high	只有標點，不配音
+level_act33side_08_end	32	act33side_08_end_s032	……		silent	high	只有標點，不配音
+level_act33side_08_end	33	act33side_08_end_s033	……		silent	high	只有標點，不配音
+level_act33side_08_end	34	act33side_08_end_s034	……		silent	high	只有標點，不配音
+level_act33side_08_end	35	act33side_08_end_s035	……		silent	high	只有標點，不配音
+level_act33side_08_end	36	act33side_08_end_s036	……		silent	high	只有標點，不配音
+level_act33side_08_end	37	act33side_08_end_s037	……		silent	high	只有標點，不配音
+level_act33side_08_end	38	act33side_08_end_s038	……		silent	high	只有標點，不配音
+level_act33side_08_end	39	act33side_08_end_s039	……		silent	high	只有標點，不配音
+level_act33side_08_end	40	act33side_08_end_s040	……		silent	high	只有標點，不配音
+level_act33side_08_end	41	act33side_08_end_s041	……		silent	high	只有標點，不配音
+level_act33side_08_end	42	act33side_08_end_s042	……		silent	high	只有標點，不配音
+level_act33side_08_end	43	act33side_08_end_s043	……		silent	high	只有標點，不配音
+level_act33side_08_end	44	act33side_08_end_s044	已选择（重启登舰身份验证	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	45	act33side_08_end_s045	已选择（重启全舰通讯模块	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	46	act33side_08_end_s046	Loading……	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	47	act33side_08_end_s047	倒计时已归零。	PRTS	dialogue	high	艦船系統的提示文字
+level_act33side_08_end	48	act33side_08_end_s048	如何评价为了维护族群的利	旁白	narration	high	場末的旁白式議論
+level_act33side_08_end	49	act33side_08_end_s049	有人称之为英雄。有人称之	旁白	narration	high	場末的旁白式議論
+level_act33side_08_end	50	act33side_08_end_s050	可这样的名号往往只能扎根	旁白	narration	high	場末的旁白式議論
+level_act33side_08_end	51	act33side_08_end_s051	当短暂的和平年代到来之时	旁白	narration	high	場末的旁白式議論
+level_act33side_08_end	52	act33side_08_end_s052	听故事的孩子们会问，背负	旁白	narration	high	場末的旁白式議論
+level_act33side_08_end	53	act33side_08_end_s053	……		silent	high	只有標點，不配音
+level_act33side_08_end	54	act33side_08_end_s054	1086年	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_08_end	55	act33side_08_end_s055	巴别塔离开卡兹戴尔的前夕	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_10_end	1	act33side_10_end_s001	“我们永远平等。”	特蕾西娅	dialogue	high	接在特蕾西娅「我会向所有萨卡兹宣誓……」之後，是誓詞本身
+level_act33side_st01	1	act33side_st01_s001	……		silent	high	只有標點，不配音
+level_act33side_st01	2	act33side_st01_s002	我见远方的军队袭来家园，	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	3	act33side_st01_s003	从河谷到山岗，从高山到平	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	4	act33side_st01_s004	君王授首，众魂恸哭。	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	5	act33side_st01_s005	我见六位英雄跨过魔王尸骸	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	6	act33side_st01_s006	吹响号角，率万部回击。	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	7	act33side_st01_s007	可惜，可叹，烈怒火光汹涌	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	8	act33side_st01_s008	流浪者的城市灭于一旦。	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	9	act33side_st01_s009	我见黑色的冠冕浮现，	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	10	act33side_st01_s010	荣耀、恩典与救济悉数归于	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	11	act33side_st01_s011	裂隙扩散，新诞的一切尽数	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	12	act33side_st01_s012	我见风暴降临，风暴中央的	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	13	act33side_st01_s013	乃是弑君之刀剑，诛王之枪	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st01	14	act33side_st01_s014	终结传说皆是按照公义。	梦中的巨人	dialogue	high	開場的預言詩，SA 身份表完成記錄已判定為夢中的巨人
+level_act33side_st02	1	act33side_st02_s001	“会的……我会在那个世界	博士	dialogue	high	前文明時期的博士說的話（對普瑞赛斯的回答、對凯尔希的囑咐）
+level_act33side_st02	2	act33side_st02_s002	四年前	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_st02	3	act33side_st02_s003	1090年夏	旁白	narration	high	年份、地點、倒數計時的字卡
+level_act33side_st02	4	act33side_st02_s004	“凯尔希……我时间不多了	博士	dialogue	high	前文明時期的博士說的話（對普瑞赛斯的回答、對凯尔希的囑咐）
+level_act33side_st02	5	act33side_st02_s005	“去寻找生命的痕迹，去寻	博士	dialogue	high	前文明時期的博士說的話（對普瑞赛斯的回答、對凯尔希的囑咐）
+level_act33side_st02	6	act33side_st02_s006	“凯尔希……自己去得出答	博士	dialogue	high	前文明時期的博士說的話（對普瑞赛斯的回答、對凯尔希的囑咐）
+level_act33side_st02	7	act33side_st02_s007	“去找到你自己。”	博士	dialogue	high	前文明時期的博士說的話（對普瑞赛斯的回答、對凯尔希的囑咐）

@@ -33,3 +33,14 @@
 
 ## 完成記錄
 （session 結束時填寫）
+
+## 補充 2026-10-05（開工前必讀；與上文衝突時以這裡為準）
+- 在 worktree `.claude/worktrees/renderer` 工作。worktree 裡的 `out`、`data`、`assets`、`.venv` 是連到主倉庫的捷徑。
+- **語音不再是 `audio/<line_id>.wav`。** 讀 `out/<scene>/voice_manifest.json`（格式與節奏規則見 `docs/01-architecture.md`「追加 2026-10-05」）。這份清單由另一個 session（`voice-lines`）同時在做；它還沒出來之前，用 `out/act33side_st01/lines.json` 的 158 行自己生一份佔位清單（每句用 `say` 或靜音，長度按字數），格式必須相同，之後直接換檔就能用。
+- **字卡是有聲的**，而且字卡的 line_id 是另一套（`<scene>_s###`，`pipeline/stickers.py`）。字卡停留時間要蓋住語音。
+- 不配音的行（「……」、叫聲描述、未知語言）畫面照常顯示文字。選項（`[Decision]`）暫不處理。`Dr.{@nickname}` 畫面上照原文顯示（暱稱用「博士」）。
+- 通則：畫面與文字一律照原版，不刻意與遊戲產生差異。
+- 間隔數值（同一人 0.8 秒、換人 0.6 秒、不配音 1.0 秒）做成設定檔可調；`gap_before` 優先。
+- 素材由另一個 session（`assets`）同時在下載，清單是 `out/<scene>/assets_manifest.json`。它還沒出來之前，缺的素材用色塊與文字佔位，不要自己去抓素材。
+- BGM 與音效軌照原設計做，但第一支影片可以先只有語音軌能出片；三軌分開成檔這點不變。
+- 片頭「本片語音為 AI 生成」字卡（`--intro-card`）在這裡做掉。
