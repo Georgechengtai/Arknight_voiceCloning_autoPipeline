@@ -82,3 +82,23 @@ python3 tools/voice_manifest.py check act33side_st01
 - 上面三處待確認的咬字，等專案擁有者審片時順便聽；要重做的話是 `tools/el_fetch.py` 那條線，重做後重跑本工具即可。
 - `tools/voice_manifest.py` 還不支援幹員台詞「幾句共用一個音檔」（`block_last`）；BB-ST-1 第五版之後已不用，遇到會直接報錯。
 - 尚未 commit（等專案擁有者同意）。
+
+### 更新 2026-10-06：旁白 10 段與結尾三句換新後重切（第二版）
+主 session 轉來的更新：專案擁有者看過第一版影片後，旁白 10 段（b01、b03、b07、b11、b13、b15、b17、b35、b37、b38）換成「說書人」念法，結尾三句（0142–0144，特蕾西娅）換新。覆寫前已向專案擁有者本人確認。
+
+- **備份**：第一版整份在 `out/act33side_st01/voice_v1/`（143 個檔、`voice_manifest.json`、當時的 `voice_work/` 檢查結果）。
+- **更新的檔案（36 個）**：0001–0007、0009–0011、0023、0024、0038、0043–0047、0050–0052、0054–0057、0098、0113、0114、0120–0124（旁白 33 句）；0142、0143、0144。其餘 107 個檔逐位元組未變。
+- **清單**：`voice_manifest.json` 已更新，變動的正是這 36 行的 `dur`／`gap_before`，其餘 122 行不變。整場照清單排出來的長度由 654.4 秒變成 663.8 秒（新旁白較慢）。
+- **做法**：`tools/voice_manifest.py` 的 `prep`／`build` 新增「只更新指定的段與句」（第三個參數，逗號分隔）；`tools/voice_cluster.sh` 取回的辨識結果改成依 key 併入既有的 `align.json`。
+  ```
+  python3 tools/voice_manifest.py prep  act33side_st01 b01,b03,b07,b11,b13,b15,b17,b35,b37,b38
+  bash tools/voice_cluster.sh act33side_st01 blocks
+  python3 tools/voice_manifest.py build act33side_st01 b01,b03,b07,b11,b13,b15,b17,b35,b37,b38,0142,0143,0144
+  bash tools/voice_cluster.sh act33side_st01 lines
+  python3 tools/voice_manifest.py check act33side_st01
+  ```
+- **驗收**：143 個檔句尾全部低於峰值 -45 dB（新檔沒有被切在聲音上的）；每段切出的各句加上段內停頓，總和與整段長度相差 0.000 秒；22 個新切點都落在明確的安靜處。`check` 裡「與 scene.mp3 比總長」這一項這次不適用——`scene.mp3`／`cues.json` 還是換音檔之前的版本（差 9.4 秒是新旁白變慢造成的）；主 session 若重跑 `tools/scene_assemble.py`，再跑一次 `check` 即可對上。
+- **10 段新旁白回聽比對：沒有漏字、多字、念錯。** whisper 10 段裡 9 段與原文完全相同，剩下 b01 的「呜咽」聽成「呜夜」是正確讀音。逐句再回聽 33 句：29 句完全對上；0005、0043 是同一個「呜咽」；0113「神民」整段聽時 whisper 寫對、單句聽時兩套都寫成「神明」（音近，仍列為可順便聽一下，不算問題）；0122「不。」是 0.5 秒的低語單字，單獨聽辨識不出來，但整段聽時有認到、量音量聲音確實在。
+- 第一版列的另兩處待確認（0086 特雷西斯、0018 疤眼）不在這次更新範圍，狀態不變。
+- 過程中的一個失誤：第一次 `build` 在寫完音檔、更新清單之前因程式順序錯誤中止，音檔與清單短暫不一致約數分鐘；修正後重跑，結果如上。
+- 叢集作業 414965（10 段）、414971（33 句）。

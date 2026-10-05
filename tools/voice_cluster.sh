@@ -23,5 +23,6 @@ while sleep 60; do
   [ -z "$state" ] && break
 done
 "${SSH[@]}" "tail -n 3 ~/large-data/aktts/aktts-valign-$jobid.log"
-"${SSH[@]}" "cat ~/$remote/align.json" > "$work/$out.tmp" && mv "$work/$out.tmp" "$work/$out"
+"${SSH[@]}" "cat ~/$remote/align.json" > "$work/$out.fetched"
+python3 tools/voice_manifest.py merge "$scene" "$what"      # 依 key 併進既有結果（只重跑一部分時其餘保留）
 echo "取回 $work/$out（作業 $jobid）"

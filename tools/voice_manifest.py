@@ -11,6 +11,11 @@
   bash tools/voice_cluster.sh <scene> lines       # 逐句檔再回聽一次，取回 voice_work/align_lines.json（驗證切點用，可略）
   python3 tools/voice_manifest.py check <scene>   # 驗收：重新接軌比總長與各段起點、句尾音量、回聽比對，寫 voice_work/check.json
 
+只更新一部分（來源音檔換了幾段時）：prep 與 build 後面加上要更新的段名與幹員句號，用逗號隔開，例如
+  python3 tools/voice_manifest.py prep  <scene> b01,b03
+  python3 tools/voice_manifest.py build <scene> b01,b03,0142
+其餘的逐句檔與清單裡其餘的行原樣保留（build 會覆寫列出的那些檔，請先自行備份 voice/）。
+
 切法：
 - 每段先做與 tools/scene_assemble.py 完全相同的處理（去頭尾、整段一個增益），所以逐句檔接回去與認可過的 scene.mp3 是同一批聲音；
   音量是「整段一起調」而不是逐句各調，段內輕重對比保持原樣。
@@ -101,8 +106,9 @@ def levels(a):
 
 # ---------- prep ----------
 
-def prep(scene):
+def prep(scene, only=None):
     d, lines, blocks, _ = load(scene)
+    blocks = [b for b in blocks if only is None or b["block"] in only]
     work = d / "voice_work"
     (work / "el").mkdir(parents=True, exist_ok=True)
     (work / "upload_blocks" / "wav").mkdir(parents=True, exist_ok=True)
@@ -219,10 +225,19 @@ def cut_block(a, lv, cuts):
     return out
 
 
-def build(scene):
+def build(scene, only=None):
     d, lines, blocks, idx = load(scene)
     work = d / "voice_work"
     align = {it["key"]: it for it in json.loads((work / "align.json").read_text(encoding="utf-8"))["items"]}
+    old = {}                            # 只更新一部分時，其餘的行沿用現有清單
+    if only is not None:
+        old = {sid(l["line_id"]): {k: v for k, v in l.items() if k not in ("line_id", "speaker")}
+               for l in json.loads((d / "voice_manifest.json").read_text(encoding="utf-8"))["lines"]}
+        blocks = [b for b in blocks if b["block"] in only]
+        idx = {k: v for k, v in idx.items() if sid(k) in only}
+        unknown = only - {b["block"] for b in blocks} - {sid(k) for k in idx}
+        if unknown:
+            sys.exit(f"找不到這些段或句：{sorted(unknown)}")
     voice = d / "voice"
     voice.mkdir(exist_ok=True)
     row = {}                            # sid -> 清單的一筆（不含 line_id、speaker）
@@ -262,12 +277,16 @@ def build(scene):
     out = []
     for r in lines:
         s = sid(r["line_id"])
+        if s not in row and s in old:
+            row[s] = old[s]
         if r["tts"] and s not in row:
             sys.exit(f"{r['line_id']}: 要配音但找不到音檔來源")
         out.append(dict(line_id=r["line_id"], speaker=r["identity"],
                         **row.get(s, dict(engine=None, path=None, dur=0, gap_before=None))))
     manifest = dict(scene=scene, sample_rate=SR, gap_rules=dict(same_speaker=GAP, turn=GAP_TURN, silent_line=GAP_SILENT), lines=out)
     (d / "voice_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
+    if only is not None and (work / "cuts.json").exists():
+        diag = [c for c in json.loads((work / "cuts.json").read_text(encoding="utf-8")) if c["block"] not in only] + diag
     (work / "cuts.json").write_text(json.dumps(diag, ensure_ascii=False, indent=1), encoding="utf-8")
     up = work / "upload_lines"
     (up / "wav").mkdir(parents=True, exist_ok=True)
@@ -279,6 +298,19 @@ def build(scene):
     print(f"段內切點 {len(diag)} 個，其中要留意 {len(bad)} 個：")
     for c in bad:
         print(f"  {c['block']} {c['before']} 之前：{c['how']}（搜尋範圍 {c['window']} 秒）")
+
+
+def merge(scene, what):
+    """把剛從叢集取回的辨識結果（*.fetched）依 key 併進 align.json／align_lines.json。"""
+    work = ROOT / "out" / scene / "voice_work"
+    name = {"blocks": "align.json", "lines": "align_lines.json"}[what]
+    new = json.loads((work / f"{name}.fetched").read_text(encoding="utf-8"))
+    cur = json.loads((work / name).read_text(encoding="utf-8")) if (work / name).exists() else dict(scene=new["scene"], items=[])
+    got = {it["key"]: it for it in new["items"]}
+    items = [got.pop(it["key"], it) for it in cur["items"]] + list(got.values())
+    (work / name).write_text(json.dumps(dict(scene=cur["scene"], items=items), ensure_ascii=False), encoding="utf-8")
+    (work / f"{name}.fetched").unlink()
+    print(f"{name}：更新 {len(new['items'])} 筆，共 {len(items)} 筆")
 
 
 # ---------- check ----------
@@ -347,6 +379,14 @@ def check(scene):
     report["reassemble"] = dict(total=round(len(buf) / SR, 3), scene_mp3=round(scene_dur, 3), diff=round(len(buf) / SR - scene_dur, 3),
                                 max_start_drift=max(drift, key=lambda x: abs(x[0])), max_block_end_drift=max(block_end, key=lambda x: abs(x[0])))
 
+    # 1a. 每段切出來的各句（含段內停頓）加起來要等於整段的長度
+    span = []
+    for b in blocks:
+        (l0, s0), (l1, s1) = by_sid[b["voiced"][0]], by_sid[b["voiced"][-1]]
+        with wave.open(str(work / "el" / f"{b['block']}.wav"), "rb") as w:
+            span.append((round(s1 + l1["dur"] - s0 - w.getnframes() / SR, 3), b["block"]))
+    report["reassemble"]["max_block_span_diff"] = max(span, key=lambda x: abs(x[0]))
+
     # 1b. 與 scene.mp3 比每 0.1 秒的音量曲線（確認接回去的是同一批聲音）
     ref_raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(d / "scene.mp3"), "-ar", str(SR), "-ac", "1", "-f", "s16le", "-"],
                              capture_output=True).stdout
@@ -394,9 +434,16 @@ def check(scene):
     r = report["reassemble"]
     print(f"重新接軌 {r['total']} 秒，scene.mp3 {r['scene_mp3']} 秒，差 {r['diff']} 秒；段起點最大偏移 {r['max_start_drift']}；"
           f"段終點最大偏移 {r['max_block_end_drift']}；音量曲線相關 {r['envelope_corr']}")
+    print(f"各段逐句加總與整段長度的最大差距 {r['max_block_span_diff']}")
     print(f"句尾音量：{report['tail']['n']} 個檔，最差 {report['tail']['worst']}，高於 -45 dB 的 {report['tail']['over']}")
     print(f"細節 -> {(work / 'check.json').relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
-    {"prep": prep, "build": build, "check": check}[sys.argv[1]](sys.argv[2])
+    cmd, scene, rest = sys.argv[1], sys.argv[2], sys.argv[3:]
+    if cmd == "merge":
+        merge(scene, rest[0])
+    elif cmd == "check":
+        check(scene)
+    else:
+        {"prep": prep, "build": build}[cmd](scene, set(rest[0].split(",")) if rest else None)
