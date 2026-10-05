@@ -2,6 +2,7 @@
 
 以 prompt 全文對回 out/<scene>/director_el.json 的 block；網址兩小時失效，所以生成後要馬上跑。
 用法：python3 tools/el_fetch.py act33side_st01 <status.json> [...]
+      python3 tools/el_fetch.py act33side_st01:director_el_dlg.json:el_dlg <status.json>   （另一份導演表、另一個輸出目錄）
 """
 import json
 import subprocess
@@ -12,10 +13,11 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def main(scene, status_files):
+    scene, director, out_name = (scene.split(":") + ["director_el.json", "el"])[:3] if ":" in scene else (scene, "director_el.json", "el")
     scene_dir = ROOT / "out" / scene
     norm = lambda s: "".join(s.split())
-    by_prompt = {norm(b["prompt"]): b for b in json.loads((scene_dir / "director_el.json").read_text(encoding="utf-8"))}
-    out = scene_dir / "el"
+    by_prompt = {norm(b["prompt"]): b for b in json.loads((scene_dir / director).read_text(encoding="utf-8"))}
+    out = scene_dir / out_name
     out.mkdir(exist_ok=True)
     for path in status_files:
         for g in json.loads(Path(path).read_text(encoding="utf-8"))["generations"]:
