@@ -6,7 +6,7 @@ level_act33side_st01	4	她的声音穿越了风雪的裂隙		旁白	narration	hi
 level_act33side_st01	5	众魂的呼唤为其和音，男孩		旁白	narration	high	無名行，預設旁白
 level_act33side_st01	6	女孩在梦中的酷寒中微微喘		旁白	narration	high	無名行，預設旁白
 level_act33side_st01	7	千年前的歌谣仍在他们眼前		旁白	narration	high	無名行，預設旁白
-level_act33side_st01	8	“这就是此章的结尾。”		梦中的巨人	dialogue	low	無名行但帶引號；前文旁白寫「巨人轻轻讲述一部遥远的史诗……她的声音」，是夢裡那位女性獨眼巨人念完預言的收尾；第 14 句“疤眼”原樣重複這句
+level_act33side_st01	8	“这就是此章的结尾。”		梦中的巨人	dialogue	high	無名行但帶引號；前文旁白寫「巨人轻轻讲述一部遥远的史诗……她的声音」，是夢裡那位女性獨眼巨人念完預言的收尾；第 14 句“疤眼”原樣重複這句（專案擁有者 2026-10-05 確認）
 level_act33side_st01	9	巨人淡入了梦中的风雪中，		旁白	narration	high	無名行，預設旁白
 level_act33side_st01	10	男孩渐渐不再听到自己啼哭		旁白	narration	high	無名行，預設旁白
 level_act33side_st01	11	他醒了。		旁白	narration	high	無名行，預設旁白
@@ -275,8 +275,8 @@ level_act33side_01_beg	129	预言和命运都一文不值。	特蕾西娅	特蕾
 level_act33side_01_beg	130	时候不早，期待你们回到卡	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名；立繪 avg_npc_1296_1
 level_act33side_01_beg	131	……	“疤眼”	疤眼	silent	high	劇本顯示名（去掉引號）；疤痕商场的首領，獨眼巨人；只有標點或括號內的動作／叫聲描述，沒有可念的字
 level_act33side_01_beg	132	目送她离去，连脚步都不再		旁白	narration	high	無名行，預設旁白
-level_act33side_01_beg	133	妈的。		疤眼	monologue	low	無名行；前一句旁白寫「“疤眼”才长吁一口气」，「妈的。」「远见？预言？自己的死亡？」是他心裡的話，下一句又回到第三人稱旁白
-level_act33side_01_beg	134	远见？预言？自己的死亡？		疤眼	monologue	low	無名行；前一句旁白寫「“疤眼”才长吁一口气」，「妈的。」「远见？预言？自己的死亡？」是他心裡的話，下一句又回到第三人稱旁白
+level_act33side_01_beg	133	妈的。		疤眼	monologue	high	無名行；前一句旁白寫「“疤眼”才长吁一口气」，「妈的。」「远见？预言？自己的死亡？」是他心裡的話，下一句又回到第三人稱旁白（專案擁有者 2026-10-05 確認）
+level_act33side_01_beg	134	远见？预言？自己的死亡？		疤眼	monologue	high	無名行；前一句旁白寫「“疤眼”才长吁一口气」，「妈的。」「远见？预言？自己的死亡？」是他心裡的話，下一句又回到第三人稱旁白（專案擁有者 2026-10-05 確認）
 level_act33side_01_beg	135	他今早都买好棺材了。		旁白	narration	high	無名行，預設旁白
 level_act33side_01_beg	136	清点一下损失。	“疤眼”	疤眼	dialogue	high	劇本顯示名（去掉引號）；疤痕商场的首領，獨眼巨人
 level_act33side_01_beg	137	首领，那些奴隶……	奴隶商人	奴隶商人	dialogue	high	劇本顯示名；立繪 avg_npc_1306_1
@@ -634,14 +634,14 @@ level_act33side_01_end	250	我不会死在这里……	好运	好运	dialogue	hi
 level_act33side_01_end	251	跟你们拼了，妈的！让开！	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
 level_act33side_01_end	252	他用尽全身的力量撞了出去		旁白	narration	high	無名行，預設旁白
 level_act33side_01_end	253	他的眼前一片黑暗。		旁白	narration	high	無名行，預設旁白
-level_act33side_01_end	254	你还好吗？你刚才想救我？	女人的声音	好运的妻子	dialogue	low	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）
-level_act33side_01_end	255	好多血。哎……怎么感觉是	女人的声音	好运的妻子	dialogue	low	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）
-level_act33side_01_end	256	挺住，我带你回巴别塔，我	女人的声音	好运的妻子	dialogue	low	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）
+level_act33side_01_end	254	你还好吗？你刚才想救我？	女人的声音	好运的妻子	dialogue	high	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）（專案擁有者 2026-10-05 確認）
+level_act33side_01_end	255	好多血。哎……怎么感觉是	女人的声音	好运的妻子	dialogue	high	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）（專案擁有者 2026-10-05 確認）
+level_act33side_01_end	256	挺住，我带你回巴别塔，我	女人的声音	好运的妻子	dialogue	high	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）（專案擁有者 2026-10-05 確認）
 level_act33side_01_end	257	哈……我还活着……	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
-level_act33side_01_end	258	哼，那些疯子为了针对巴别	女人的声音	好运的妻子	dialogue	low	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）
-level_act33side_01_end	259	喂，喂，别睡过去，我还不	女人的声音	好运的妻子	dialogue	low	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）
+level_act33side_01_end	258	哼，那些疯子为了针对巴别	女人的声音	好运的妻子	dialogue	high	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）（專案擁有者 2026-10-05 確認）
+level_act33side_01_end	259	喂，喂，别睡过去，我还不	女人的声音	好运的妻子	dialogue	high	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）（專案擁有者 2026-10-05 確認）
 level_act33side_01_end	260	我……好……运……	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
-level_act33side_01_end	261	啊？	女人的声音	好运的妻子	dialogue	low	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）
+level_act33side_01_end	261	啊？	女人的声音	好运的妻子	dialogue	high	救下好运、要帶他回巴别塔的女性；下一場（BB-2 行動前第 48 句）有人說好运「娶了一个巴别塔的女人」，推測就是她（即孩子口中的媽媽「奥达」）（專案擁有者 2026-10-05 確認）
 level_act33side_01_end	262	他第一次后悔给自己取了这		旁白	narration	high	無名行，預設旁白
 level_act33side_02_beg	1	莱塔尼亚，瓦瑟领大区		旁白	narration	high	無名行，預設旁白
 level_act33side_02_beg	2	您觉得这首曲子如何？	和蔼的文官	和蔼的文官	dialogue	high	劇本顯示名；立繪 avg_npc_493_1
@@ -681,26 +681,26 @@ level_act33side_02_beg	35	之后的报酬，选帝侯阁下可	强装镇定的�
 level_act33side_02_beg	36	你的胆子很大，我很喜欢。	“疤眼”	疤眼	dialogue	high	劇本顯示名（去掉引號）；疤痕商场的首領，獨眼巨人
 level_act33side_02_beg	37	卡兹戴尔地区，卡兹戴尔移		旁白	narration	high	無名行，預設旁白
 level_act33side_02_beg	38	拿着你的东西滚开，莱塔尼	愤怒的萨卡兹	愤怒的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_932_1
-level_act33side_02_beg	39	这些只是抑制剂，你们在战	失落的巴别塔成员	巴别塔医生	dialogue	low	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人
+level_act33side_02_beg	39	这些只是抑制剂，你们在战	失落的巴别塔成员	巴别塔医生	dialogue	high	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人（專案擁有者 2026-10-05 確認）
 level_act33side_02_beg	40	长官们都说了，外面正在围	愤怒的萨卡兹	愤怒的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_932_1
 level_act33side_02_beg	41	准是你们这些外人把他们引	愤怒的萨卡兹	愤怒的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_932_1
-level_act33side_02_beg	42	唉，我……我没法解释。我	失落的巴别塔成员	巴别塔医生	dialogue	low	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人
+level_act33side_02_beg	42	唉，我……我没法解释。我	失落的巴别塔成员	巴别塔医生	dialogue	high	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人（專案擁有者 2026-10-05 確認）
 level_act33side_02_beg	43	别想碰我的孩子！	愤怒的萨卡兹	愤怒的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_932_1
 level_act33side_02_beg	44	我听到这边有骚动——你疯	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
 level_act33side_02_beg	45	你没事吧？	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
-level_act33side_02_beg	46	我没事，他没想真伤害我。	失落的巴别塔成员	巴别塔医生	dialogue	low	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人
+level_act33side_02_beg	46	我没事，他没想真伤害我。	失落的巴别塔成员	巴别塔医生	dialogue	high	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人（專案擁有者 2026-10-05 確認）
 level_act33side_02_beg	47	啧，好运。	愤怒的萨卡兹	愤怒的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_932_1
 level_act33side_02_beg	48	你娶了一个巴别塔的女人，	愤怒的萨卡兹	愤怒的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_932_1
-level_act33side_02_beg	49	我们中很多人同样为这场即	失落的巴别塔成员	巴别塔医生	dialogue	low	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人
-level_act33side_02_beg	50	我们都申请了和你们一起去	失落的巴别塔成员	巴别塔医生	dialogue	low	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人
+level_act33side_02_beg	49	我们中很多人同样为这场即	失落的巴别塔成员	巴别塔医生	dialogue	high	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人（專案擁有者 2026-10-05 確認）
+level_act33side_02_beg	50	我们都申请了和你们一起去	失落的巴别塔成员	巴别塔医生	dialogue	high	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人（專案擁有者 2026-10-05 確認）
 level_act33side_02_beg	51	……	愤怒的萨卡兹	愤怒的萨卡兹	silent	high	劇本顯示名；立繪 avg_npc_932_1；只有標點或括號內的動作／叫聲描述，沒有可念的字
 level_act33side_02_beg	52	都是疯子……谁知道你们上	愤怒的萨卡兹	愤怒的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_932_1
 level_act33side_02_beg	53	把这些药给我吧，我去替你	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
 level_act33side_02_beg	54	他们都已经准备出发了，去	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
-level_act33side_02_beg	55	好运，你的孩子……	失落的巴别塔成员	巴别塔医生	dialogue	low	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人
+level_act33side_02_beg	55	好运，你的孩子……	失落的巴别塔成员	巴别塔医生	dialogue	high	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人（專案擁有者 2026-10-05 確認）
 level_act33side_02_beg	56	我没同意让他出城。	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
 level_act33side_02_beg	57	既然莱塔尼亚想要把我们赶	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
-level_act33side_02_beg	58	……	失落的巴别塔成员	巴别塔医生	silent	low	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人；只有標點或括號內的動作／叫聲描述，沒有可念的字
+level_act33side_02_beg	58	……	失落的巴别塔成员	巴别塔医生	silent	high	立繪 avg_npc_499_1；好运稱她「巴别塔的医生」、旁人罵她「莱塔尼亚人」，與下一場顯示名「巴别塔医生」的卡普里尼女醫生同立繪、同出身，推測是同一人（專案擁有者 2026-10-05 確認）；只有標點或括號內的動作／叫聲描述，沒有可念的字
 level_act33side_02_beg	59	哈，放轻松些，医生。过去	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
 level_act33side_02_beg	60	熔炉已燃烧了上百年。		旁白	narration	high	無名行，預設旁白
 level_act33side_02_beg	61	战争，天灾，迁徙，流浪，		旁白	narration	high	無名行，預設旁白
@@ -858,10 +858,10 @@ level_act33side_02_end	62	“弑君之刀剑，诛王之枪矛		旁白	narration
 level_act33side_02_end	63	可他们从未在乎过预言。		旁白	narration	high	無名行，預設旁白
 level_act33side_02_end	64	好。	特雷西斯	特雷西斯	dialogue	high	劇本顯示名
 level_act33side_02_end	65	跟我们走。萨卡兹的家不在	特雷西斯	特雷西斯	dialogue	high	劇本顯示名
-level_act33side_02_end	66	“你有名字吗？”		特蕾西娅	dialogue	low	無名行但帶引號，是替孩子取名的四句對話之一；問話語氣溫和，推測是特蕾西娅，但也可能是特雷西斯（第 65 句是他說「跟我们走」）
-level_act33side_02_end	67	“名字？‘我’。”		阿斯卡纶（幼年）	dialogue	low	無名行但帶引號；回答「名字？‘我’。」的是被撿到的孩子（幼年阿斯卡纶）
-level_act33side_02_end	68	“那从现在起，你有新的名		特蕾西娅	dialogue	low	無名行但帶引號；替孩子取名「阿斯卡纶」的人，推測與第 66 句同一人（特蕾西娅），也可能是特雷西斯
-level_act33side_02_end	69	“阿斯卡纶。”		特蕾西娅	dialogue	low	無名行但帶引號；替孩子取名「阿斯卡纶」的人，推測與第 66 句同一人（特蕾西娅），也可能是特雷西斯
+level_act33side_02_end	66	“你有名字吗？”		特蕾西娅	dialogue	high	無名行但帶引號，是替孩子取名的四句對話之一；問話語氣溫和，推測是特蕾西娅，但也可能是特雷西斯（第 65 句是他說「跟我们走」）（專案擁有者 2026-10-05 確認）
+level_act33side_02_end	67	“名字？‘我’。”		阿斯卡纶（幼年）	dialogue	high	無名行但帶引號；回答「名字？‘我’。」的是被撿到的孩子（幼年阿斯卡纶）（專案擁有者 2026-10-05 確認）
+level_act33side_02_end	68	“那从现在起，你有新的名		特蕾西娅	dialogue	high	無名行但帶引號；替孩子取名「阿斯卡纶」的人，推測與第 66 句同一人（特蕾西娅），也可能是特雷西斯（專案擁有者 2026-10-05 確認）
+level_act33side_02_end	69	“阿斯卡纶。”		特蕾西娅	dialogue	high	無名行但帶引號；替孩子取名「阿斯卡纶」的人，推測與第 66 句同一人（特蕾西娅），也可能是特雷西斯（專案擁有者 2026-10-05 確認）
 level_act33side_02_end	70	十天后		旁白	narration	high	無名行，預設旁白
 level_act33side_02_end	71	卡兹戴尔地区，卡兹戴尔移		旁白	narration	high	無名行，預設旁白
 level_act33side_02_end	72	医生，快看！熔炉重燃了！	激动的萨卡兹	激动的萨卡兹	dialogue	high	劇本顯示名；立繪 avg_npc_934_1
@@ -1083,7 +1083,7 @@ level_act33side_03_beg	23	城里变了很多，许多人来了		旁白	narration
 level_act33side_03_beg	24	他不懂，大家都是萨卡兹，		旁白	narration	high	無名行，預設旁白
 level_act33side_03_beg	25	他拿出照片，检查了一下目		旁白	narration	high	無名行，預設旁白
 level_act33side_03_beg	26	一个老师。替巴别塔的外族		旁白	narration	high	無名行，預設旁白
-level_act33side_03_beg	27	真不走运，今天你的生命就		好运	monologue	low	無名行；好运看著暗殺目標的照片，「今天你的生命就要到头了」是他對目標說的心裡話（前後旁白都以「他」稱好运）
+level_act33side_03_beg	27	真不走运，今天你的生命就		好运	monologue	high	無名行；好运看著暗殺目標的照片，「今天你的生命就要到头了」是他對目標說的心裡話（前後旁白都以「他」稱好运）（專案擁有者 2026-10-05 確認）
 level_act33side_03_beg	28	看行踪，应该是在这附近。	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
 level_act33side_03_beg	29	等等，为什么是这儿……	好运	好运	dialogue	high	劇本顯示名；立繪 avg_npc_1305_1
 level_act33side_03_beg	30	即使很久都没回来过，他也		旁白	narration	high	無名行，預設旁白
@@ -1570,14 +1570,14 @@ level_act33side_st02	75	那就做你想做的吧，我就在	特蕾西娅	特蕾
 level_act33side_st02	76	凯尔希的手已经触摸到了这		旁白	narration	high	無名行，預設旁白
 level_act33side_st02	77	罗德岛迎来了新一轮的震动		旁白	narration	high	無名行，預設旁白
 level_act33side_st02	78	门，松动了。		旁白	narration	high	無名行，預設旁白
-level_act33side_st02	79	“源石会成为我们文明凝结		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
-level_act33side_st02	80	“如有一天，寰宇中的其他		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
-level_act33side_st02	81	“他们会见证……		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
-level_act33side_st02	82	“我们辉煌过，		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
-level_act33side_st02	83	“我们抵抗过，		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
-level_act33side_st02	84	“我们安眠于此。		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
-level_act33side_st02	85	“我们也曾于湮灭之前递与		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
-level_act33side_st02	86	“——希望。”		博士	dialogue	low	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）
+level_act33side_st02	79	“源石会成为我们文明凝结		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
+level_act33side_st02	80	“如有一天，寰宇中的其他		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
+level_act33side_st02	81	“他们会见证……		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
+level_act33side_st02	82	“我们辉煌过，		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
+level_act33side_st02	83	“我们抵抗过，		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
+level_act33side_st02	84	“我们安眠于此。		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
+level_act33side_st02	85	“我们也曾于湮灭之前递与		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
+level_act33side_st02	86	“——希望。”		博士	dialogue	high	Subtitle 字幕帶引號，石棺的門鬆動時響起；「源石会成为我们文明凝结而成的信标」是前文明的人留下的話，推測是博士（也可能是普瑞赛斯或無特定說話者的錄音）（專案擁有者 2026-10-05 確認）
 level_act33side_st02	87	（未知语言）这里……	？？？	博士	unknown_language	high	石棺中剛甦醒的人；第 147 句自己說「称呼我为博士吧」，第 148 句起顯示名改為博士；帶「（未知语言）」標記，不配音
 level_act33side_st02	88	（未知语言）时间……已经	？？？	博士	unknown_language	high	石棺中剛甦醒的人；第 147 句自己說「称呼我为博士吧」，第 148 句起顯示名改為博士；帶「（未知语言）」標記，不配音
 level_act33side_st02	89	警告：未知能源启动。		PRTS	dialogue	high	無名行；格式是系統提示（「警告：」「检索：」「PRTS系统权限已重置」），是罗德岛本艦 PRTS 系統的輸出，不是旁白
@@ -1631,7 +1631,7 @@ level_act33side_st02	136	确定她的希望未曾发生过什		旁白	narration	
 level_act33side_st02	137	……	？？？	博士	silent	high	石棺中剛甦醒的人；第 147 句自己說「称呼我为博士吧」，第 148 句起顯示名改為博士；只有標點或括號內的動作／叫聲描述，沒有可念的字
 level_act33side_st02	138	（未知语言）那不是……问	？？？	博士	unknown_language	high	石棺中剛甦醒的人；第 147 句自己說「称呼我为博士吧」，第 148 句起顯示名改為博士；帶「（未知语言）」標記，不配音
 level_act33side_st02	139	（未知语言）那你……已经	？？？	博士	unknown_language	high	石棺中剛甦醒的人；第 147 句自己說「称呼我为博士吧」，第 148 句起顯示名改為博士；帶「（未知语言）」標記，不配音
-level_act33side_st02	140	“凯尔希……”		博士	dialogue	low	Subtitle 字幕帶引號「凯尔希……」；夾在博士問凯尔希「找到生命的意义了吗」之後，推測是凯尔希記憶裡博士當年喚她名字的聲音
+level_act33side_st02	140	“凯尔希……”		博士	dialogue	high	Subtitle 字幕帶引號「凯尔希……」；夾在博士問凯尔希「找到生命的意义了吗」之後，推測是凯尔希記憶裡博士當年喚她名字的聲音（專案擁有者 2026-10-05 確認）
 level_act33side_st02	141	（未知语言）寻找生命延续	凯尔希	凯尔希	unknown_language	high	劇本顯示名；立繪 avg_003_kalts_1；帶「（未知语言）」標記，不配音
 level_act33side_st02	142	（未知语言）你还记得……	凯尔希	凯尔希	unknown_language	high	劇本顯示名；立繪 avg_003_kalts_1；帶「（未知语言）」標記，不配音
 level_act33side_st02	143	（未知语言）我记得……于	？？？	博士	unknown_language	high	石棺中剛甦醒的人；第 147 句自己說「称呼我为博士吧」，第 148 句起顯示名改為博士；帶「（未知语言）」標記，不配音
@@ -2448,7 +2448,7 @@ level_act33side_05_beg	164	死亡在遥远的土地上等待着	特蕾西娅	特
 level_act33side_05_beg	165	即使如此，你们依旧会义无	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名
 level_act33side_05_beg	166	忧伤的魔王行走在子民之中		旁白	narration	high	無名行，預設旁白
 level_act33side_05_beg	167	可他们的决心从未改变，哪		旁白	narration	high	無名行，預設旁白
-level_act33side_05_beg	168	“去。”“我们去。”		疤痕商场的佣兵们	dialogue	low	無名行但帶引號「“去。”“我们去。”」；下一句旁白寫「声音此起彼伏」，是在場傭兵們回答特蕾西娅的群聲，不是旁白自己的話
+level_act33side_05_beg	168	“去。”“我们去。”		疤痕商场的佣兵们	dialogue	high	無名行但帶引號「“去。”“我们去。”」；下一句旁白寫「声音此起彼伏」，是在場傭兵們回答特蕾西娅的群聲，不是旁白自己的話（專案擁有者 2026-10-05 確認）
 level_act33side_05_beg	169	声音此起彼伏，在特蕾西娅		旁白	narration	high	無名行，預設旁白
 level_act33side_05_beg	170	殿下，我们尊重你，但我们	无名的佣兵	无名的佣兵	dialogue	high	劇本顯示名
 level_act33side_05_beg	171	摄政王殿下承诺过，伦蒂尼	显赫的佣兵	显赫的佣兵	dialogue	high	劇本顯示名
@@ -2981,7 +2981,7 @@ level_act33side_06_beg	239	很遗憾。确实是我亲手造成	博士	博士	di
 level_act33side_06_beg	240	我不会逃避责任，也不会因	博士	博士	dialogue	high	劇本顯示名；立繪 avg_npc_048
 level_act33side_06_beg	241	我——	博士	博士	dialogue	high	劇本顯示名；立繪 avg_npc_048
 level_act33side_06_beg	242	我不知道源石是否该以这种		博士	monologue	high	Subtitle 字幕；博士說到「我——」之後畫面轉黑出現的第一人稱心聲
-level_act33side_06_beg	243	但源石才是保护所有生命和		博士	monologue	low	Subtitle 字幕，刻意用黑色字；緊接上一句心聲的反駁（「但源石才是…最后办法」），推測是博士心裡屬於前文明使命的另一個聲音，仍是博士本人
+level_act33side_06_beg	243	但源石才是保护所有生命和		普瑞赛斯	monologue	high	Subtitle 黑色字；緊接博士心聲的反駁（「但源石才是…最后办法」）。兩種理解都成立（博士自己的另一個念頭／普瑞赛斯的主張），專案擁有者 2026-10-05 決定：視為博士內心的自答，但由普瑞赛斯的聲音念，當作彩蛋
 level_act33side_06_beg	244	……	博士	博士	silent	high	劇本顯示名；立繪 avg_npc_048；只有標點或括號內的動作／叫聲描述，沒有可念的字
 level_act33side_06_beg	245	博士，你太累了。你愿意为	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名；立繪 avg_npc_1296_1
 level_act33side_06_beg	246	你现在的痛苦和纠结，想必	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名；立繪 avg_npc_1296_1
@@ -3120,7 +3120,7 @@ level_act33side_06_end	120	她说，唯有此法，唯有让源		博士	monologu
 level_act33side_06_end	121	我们才可寻得变化、突破，		博士	monologue	high	同第 115 句：博士記憶中的第一人稱敘述，「她」指普瑞赛斯
 level_act33side_06_end	122	尽管……		博士	monologue	high	同第 115 句：博士記憶中的第一人稱敘述，「她」指普瑞赛斯
 level_act33side_06_end	123	这不是一种转化，这是一种		博士	monologue	high	同第 115 句：博士記憶中的第一人稱敘述，「她」指普瑞赛斯
-level_act33side_06_end	124	这不是一种灭绝，这是一种		博士	monologue	low	Subtitle 黑色字；與上一句「这是一种死亡」針鋒相對的「这是一种存续」。本場黑色字都是博士的心聲，但這句的立場是普瑞赛斯的主張，也可能是博士記憶裡她的聲音
+level_act33side_06_end	124	这不是一种灭绝，这是一种		普瑞赛斯	monologue	high	Subtitle 黑色字；與上一句「这是一种死亡」針鋒相對的「这是一种存续」，立場是普瑞赛斯的主張。專案擁有者 2026-10-05 決定：視為博士內心的自答，但由普瑞赛斯的聲音念，當作彩蛋
 level_act33side_06_end	125	这到底是……什么时候的记	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名
 level_act33side_06_end	126	这个在绝望之中陪伴博士的	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名
 level_act33side_06_end	127	不。凯尔希曾说过的。她曾	特蕾西娅	特蕾西娅	dialogue	high	劇本顯示名

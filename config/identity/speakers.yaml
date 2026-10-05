@@ -25,9 +25,9 @@ speakers:
     scenes: [01_beg, 01_end, 02_beg, 02_end, 03_beg, 03_end, 04_beg, 04_end, 05_beg, 05_end, 06_beg, 06_end, 07_beg, 07_end, 08_beg, 08_end, 09_beg, 09_end, 10_beg, 10_end, st01, st02, st03]
   "博士":
     role: doctor
-    line_count: 592
-    voiced_lines: 514
-    kinds: {dialogue: 454, monologue: 60, silent: 44, unknown_language: 34}
+    line_count: 590
+    voiced_lines: 512
+    kinds: {dialogue: 454, monologue: 58, silent: 44, unknown_language: 34}
     aliases: ["预言家", "？？？"]
     sprite_groups: [avg_npc_048, avg_npc_1360_1]
     scenes: [04_beg, 04_end, 05_beg, 06_beg, 06_end, 07_beg, 08_beg, 08_end, 09_end, 10_beg, st02, st03]
@@ -311,6 +311,14 @@ speakers:
     aliases: ["阴郁的萨卡兹"]
     sprite_groups: [avg_npc_933_1]
     scenes: [02_end]
+  "普瑞赛斯":
+    role: npc_minor
+    line_count: 17
+    voiced_lines: 17
+    kinds: {dialogue: 15, monologue: 2}
+    aliases: []
+    sprite_groups: [avg_npc_083]
+    scenes: [06_beg, 06_end, 07_beg, st02]
   "萨卡兹雇佣兵（06前·尤莉叶的同伴）":
     role: npc_minor
     line_count: 16
@@ -327,14 +335,6 @@ speakers:
     aliases: []
     sprite_groups: [avg_npc_053]
     scenes: [01_beg]
-  "普瑞赛斯":
-    role: npc_minor
-    line_count: 15
-    voiced_lines: 15
-    kinds: {dialogue: 15}
-    aliases: []
-    sprite_groups: [avg_npc_083]
-    scenes: [07_beg, st02]
   "决然的刺客":
     role: npc_minor
     line_count: 14
