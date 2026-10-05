@@ -229,3 +229,71 @@ BB-ST-1 的 143 句配音已完成並經專案擁有者聽過六版（過程與�
 - **音量是「整段一個增益」**：ElevenLabs 同一段的各句用同一個增益（整段平均約 -20 dB），段內的輕重對比保持合成時的樣子，所以個別輕聲的句子會低於 -20 dB。幹員台詞本來就是逐句各調。
 - `dur`、`gap_before` 取到毫秒。
 - 中間檔與檢查結果在 `out/<scene>/voice_work/`（各段處理後的 WAV、語音辨識結果 `align.json`／`align_lines.json`、切點說明 `cuts.json`、驗收結果 `check.json`、重新接回去的 `reassembled.wav`），渲染器不需要讀。
+
+## 追加 2026-10-05（S5 渲染器實作後：時間表的契約與節奏的落地方式）
+
+渲染階段已實作在 `pipeline/render/`，上面「節奏規則」「渲染器約定」兩節與本節不同之處以本節為準。
+
+### 指令
+
+```
+python -m pipeline render --scene act33side_st01            # 出 out/<scene>/<scene>.mp4 與 <scene>_nobgm.mp4
+python -m pipeline render --scene … --intro-card            # 片頭加「本片语音为 AI 生成」字卡（文字與秒數在設定檔）
+python -m pipeline render --scene … --schedule-only         # 只算時間表；--audio-only 再加音軌，不畫畫面
+python -m pipeline render --scene … --voice-manifest <路徑> --tag <標記>   # 換一份語音清單，輸出改放 out/<scene>/render-<標記>/
+python -m pipeline render-placeholder --scene …             # 語音清單還沒出來時：用 lines.json 生佔位清單到 out/<scene>/placeholder/
+python -m pipeline render-preview --scene …                 # 本機預覽頁（拖曳條＋播放），不用等出片就能看畫面
+```
+
+工作檔都在 `out/<scene>/render/`：`schedule.json`、`voice.wav`、`bgm.wav`、`sfx.wav`、`mix.wav`、`mix_nobgm.wav`、`video.mp4`（無聲畫面）。同名的舊影片不會被覆蓋，會先改名（加上日期時間）留著；要直接蓋掉加 `--force`。
+
+三個輸入：`timeline.json`、`voice_manifest.json`（路徑相對於清單所在的目錄）、`assets_manifest.json`（沒有這個檔、或裡面缺某個素材時，畫面用色塊加文字佔位、聲音靜音，並在時間表的 `warnings` 列出）。
+
+### schedule.json（時間表）
+
+`pipeline/render/schedule.py` 的 `build_schedule()` 是純函式；渲染器與混音都只讀它的結果，不自己算節奏。時間單位是秒，取到毫秒。
+
+```json
+{"scene_id": "…", "fps": 30, "width": 1920, "height": 1080, "coord": {"w": 1280, "h": 720},
+ "duration": 746.484, "frames": 22395,
+ "intro": null,
+ "events": [{"i": 0, "cmd": "blocker", "t": 0.0}],
+ "lines":  [{"line_id": "…_0001", "kind": "narration", "speaker": "旁白", "voiced": true, "gap": 0.0,
+             "t": 4.0, "t_voice_end": 12.0, "t_end": 12.91, "audio": "out/…/voice/…_0001.wav"}],
+ "layers": {"backgrounds": [], "images": [], "sprites": [], "blockers": [], "shakes": [],
+            "stickers": [], "subtitles": [], "dialogs": []},
+ "audio":  {"voice": [], "music": [], "sounds": []},
+ "approx": ["backgroundtween", "camerashake", "imagetween"], "warnings": []}
+```
+
+- `events`：每個 timeline 事件的開始時刻（除錯與測試用）。`lines`：每個要顯示文字的行（含字卡），`t` 是字出現、也是開口的時刻，`t_voice_end` 是說完，`t_end` 是畫面往下走的時刻。
+- `layers` 是畫面的全部內容，每一項都帶起訖時間：背景與插圖（含縮放平移的補間）、立繪（位置、大小、淡入淡出、移動、震動、每段時間是亮是暗）、黑幕色塊、鏡頭震動、字卡、字幕、對話框。
+- `approx` 列出只做了近似的指令（鏡頭震動用正弦位移；背景／插圖的補間用等速）。
+
+### 節奏：間隔放在哪裡
+
+「開口前的間隔」（`gap_before`，或同一人 0.8 秒、換人 0.6 秒）在畫面上是**上一句的字多留一會兒**，下一句的字與聲音同時出現（任務書的驗收要求字與聲音的起點差小於 0.1 秒；若把間隔放在下一句的字出現之後，字會比聲音早 0.6–0.8 秒）。
+
+腳本自己的等待（`Delay`、會等待的黑幕淡入淡出）**算進間隔，不重複加**：兩句之間腳本已經等了 3 秒，就不再另外加 0.6 秒；腳本只等了 0.2 秒，就補到 0.6 秒。理由：這些間隔是在純音軌時定的，其中換場的 2 秒本來就是在模擬轉場，現在有真的轉場了。緊接轉場的句子，字至少再留 0.3 秒才消失。整場因此是 12 分 26 秒（純音軌 10 分 54 秒，多出的是腳本的轉場與停頓）。
+
+不配音的行照舊停 1.0 秒，這 1.0 秒對下一句來說也算已經等過的時間（與純音軌的算法一致）。
+
+以上數值都在 `config/settings.yaml` 的 `render.gaps`；`absorb_script_time: false` 可改回「間隔與腳本等待相加」。語音清單裡的 `gap_rules` 目前只當說明，實際數值以設定檔為準。
+
+### 畫面的決定（與任務書原文不同之處）
+
+- **圖層順序**：背景 → 插圖（`Image`）→ 立繪 → 黑幕色塊 → 字卡與字幕 → 對話框。任務書原文把字卡放在黑幕之下，但腳本的用法是「先把畫面壓暗六成，再出字卡」，字卡若在黑幕下會跟著變暗，所以放在上面。
+- **立繪位置**：素材清單的 `pos`、`size` 是「圖片畫成 size×size（遊戲座標），中心在該位置的 x ＋ pos.x、離畫面底邊 pos.y 高」；三個位置的中心 x 是 440／640／840。兩者都已對照 PRTS 播放器的原始碼（`Widget:ScenarioSimulator` 的 `charPos`：960 寬畫布上的 330／480／630）。第一版影片出片時 PRTS 連不上，左右位置用的是猜的 320／960（太靠兩邊），當晚連上後已修正並重出。立繪站得近會互相遮到，所以壓暗的先畫、亮的（正在說話的）畫在上面。
+- **說話者以外的立繪亮度** 0.6（任務書寫 85%；遊戲裡壓暗得比較明顯）。可在 `render.stage.dim_brightness` 調。
+- **打亮規則**（同 PRTS 播放器）：`focus` 指定位置 → 只有該位置亮；`focus="n"` → 全暗；`all` 或清空之後 → 全亮；換上新立繪而沒寫 `focus` → 亮的是那個位置。只寫 `posto` 的移動是「從目前位置再移這麼多」。
+- **字型**：依序找 Noto Sans CJK SC、思源黑體、蘋方。這台 Mac 已用 Homebrew 裝了 Noto Sans CJK SC（`brew install --cask font-noto-sans-cjk-sc`），現在用的是它。
+- 靜止的畫面不重複截圖：渲染器先把「這一刻畫面上有什麼」算成一份資料，與上一幀相同就沿用上一張圖。`seek` 仍是確定性的。
+
+### 音軌
+
+- 語音：照時間表把每句放到開口的時刻，不調音量。
+- 音樂：前奏播一次，接循環段重複到 `stopmusic` 淡出；音量是腳本的 `volume` 再降 `render.audio.bgm_gain_db`（−12 dB）。**有人說話時音樂自動再退 6 dB**（`render.audio.duck`：開口前 0.25 秒開始退、說完 0.6 秒內回來、兩句相隔不到 1.5 秒就不回升；依時間表的語音時段計算，不是聽音量即時壓，所以每次結果相同）。
+- 音效：一次性的照原長播放；循環的（風雪聲）照 `soundvolume`／`stopsound` 的音量折線。再降 `sfx_gain_db`（−6 dB）。
+- 三軌各自成檔，最後只相加，混成有音樂與無音樂兩版。**`bgm.wav`、`sfx.wav` 已經包含上述增益與退後，就是成品裡實際的音量**（第一版的 `bgm.wav` 是還沒降 12 dB 的原始音量，直接拿它和語音比會以為音樂比人聲大）。每次出片會把「有人說話時」三軌的響度寫到 `render/loudness.json`。
+- BB-ST-1 實測（只量有人說話的時段）：音樂比語音低 20.0／26.1／17.7 dB（三首曲子原始音量不同，沒有另外拉齊）；與語音重疊的音效最接近的也低 9.5 dB。
+- 循環段是 MP3，接縫處可能有極短的空隙。

@@ -29,3 +29,49 @@ assets:
   retries: 3
   index_max_age_h: 24
   min_interval_s: {prts.wiki: 1.2, default: 0.2}
+
+# 影片渲染（python -m pipeline render）。座標與字級都是遊戲座標系（1280×720），輸出時等比放大。
+render:
+  gaps:                             # 句與句的間隔；語音清單的 gap_before 有值時以它為準
+    same_speaker_s: 0.8             # 同一人接著說
+    turn_s: 0.6                     # 換人說話
+    silent_line_s: 1.0              # 不配音的行（「……」、叫聲描述）停留
+    min_hold_after_line_s: 0.3      # 句子說完後若緊接轉場，字至少再留這麼久
+    absorb_script_time: true        # 腳本自己的等待（Delay、黑幕淡入淡出）算進間隔，不重複加
+  tail_s: 1.0                       # 片尾多留的時間
+  typewriter_char_s: 0.03           # 對話框打字機：每字秒數（字卡與字幕用腳本自帶的 delay）
+  stage:
+    slot_x: {l: 440, m: 640, r: 840}   # 立繪三個位置的中心 x（PRTS 播放器：960 寬畫布上的 330／480／630）
+    dim_brightness: 0.6             # 沒在說話的立繪亮度
+    sprite_default_fade_s: 0.15     # 腳本沒寫 duration 時，新立繪出現的淡入
+    default_pos: {x: 0, y: 180}     # 素材清單沒有該立繪的座標時用
+    default_size: 1024
+  dialog:                           # 對話框版面
+    band_top: 500                   # 底部漸層黑帶從這個 y 開始
+    name_right: 262                 # 名字靠右對齊到這個 x
+    name_size: 27
+    name_color: "#a8a8a8"
+    text_x: 296
+    text_y: 566
+    text_width: 760
+    text_size: 24
+    line_height: 37
+  fonts: ["Noto Sans CJK SC", "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Heiti SC", "sans-serif"]
+  intro_card:                       # --intro-card：片頭的 AI 語音聲明
+    duration_s: 4.0
+    fade_s: 0.5
+    lines: ["本片语音为 AI 生成"]
+  audio:
+    sample_rate: 44100
+    bgm_gain_db: -12                # 背景音樂相對原檔再降多少（另乘腳本的 volume）
+    sfx_gain_db: -6
+    duck:                           # 有人說話時音樂自動退後
+      duck_db: 6                    # 說話時再降多少；0 = 不退
+      attack_s: 0.25                # 開口前多久開始退
+      release_s: 0.6                # 說完後多久回到原音量
+      bridge_s: 1.5                 # 兩句相隔不到這麼久就不回升
+  encode:
+    crf: 18
+    preset: medium
+    audio_bitrate: 192k
+    frame_format: png               # 截圖格式：png（無損）或 jpeg（較快）
