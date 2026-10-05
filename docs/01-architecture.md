@@ -148,3 +148,16 @@ CER（字錯率）閾值預設 0.10；`flag` 項目列入人工聽審。
 - `cluster/setup_env.sh`：建 conda 環境（放 `~/large-data/conda`），裝 IndexTTS-2 與 FunASR，下載權重到 `~/large-data/models/`。
 - `cluster/job.sbatch`：`--gpus=rtx3090 -c 8 --mem=40G -t 0-12`，以 `MANIFEST` 環境變數指向輸入。
 - Mac 端 `pipeline cluster push/pull` 封裝 rsync（只傳 manifest、refs、audio、report）。
+
+## 追加 2026-10-04（S1 實作後的 timeline 契約補充）
+
+機器可讀的完整定義在 `pipeline/schemas/timeline.schema.json`，解析器寫檔前一律驗證。上面的範例仍然成立，實作多了這些：
+
+- 每個 line（對白、旁白、字幕都一樣）固定帶 `sprites_on_stage`、`focus_group`、`tts_text`、`emotion`。
+  - `sprites_on_stage`：charslot 的立繪依 l、m、r 排序，其後是 charactercutin 的立繪。
+  - `focus_group`：被打亮的那個立繪組（多半就是說話者）；無法確定時為 null。
+- line 的選用欄位：`rich_text`（原文帶 `<color>` 標籤或 `{@nickname}` 時才有；`text` 永遠是清理後的純文字）、`multiline: {block, end}`（`[multiline]` 區塊的一段；不合併，同 `block` 的各段在同一個對話框接續顯示）、`args`（字幕的座標字號等）。
+- 頂層多了 `header`（腳本首行 `[HEADER]` 的參數）與 `stats`（事件數、各類句數、規劃口徑句數）。
+- 一般指令事件是 `{i, cmd, args}`；`args` 的鍵一律小寫。charslot 與 charactercutin 帶 name 時多出 `group`、`face`、`body`。未知指令多一個 `raw`；解析失敗的行是 `cmd: "_unparsed"`，帶 `raw`、`error`、`src_line`。
+- 帶文字的 `[Subtitle]` 是 `kind: subtitle` 的 line；無參數的 `[subtitle]` 是清除字幕的指令事件。`[Decision]` 目前是指令事件，不是 line。
+- 遊戲資料的實際位置：`data/gamedata/excel/<表>.json`、`data/gamedata/story/<storyTxt>.txt`。
