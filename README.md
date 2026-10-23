@@ -3,7 +3,7 @@
 把《明日方舟》劇情腳本（Kengxxiao/ArknightsGameData 的 story txt）自動變成
 「原版背景＋立繪＋BGM＋音效＋AI 克隆語音」的 MP4，發佈到 bilibili（非盈利同人）。
 
-目前狀態：**規劃完成，尚未開工。** 所有決定、核實過的數據與分工見 `docs/`。
+目前狀態：**已有 BB-ST-1 / BB-1 配音產物，2026-10-23 搬遷至校園工作電腦主控、SCRP 執行。** 接手請先讀 [校園交接文件](docs/migration/CAMPUS-HANDOFF.md)。所有決定及歷史見 `docs/`。
 
 | 文件 | 內容 |
 |---|---|
@@ -13,6 +13,6 @@
 | `docs/03-scrp-cluster.md` | 部門 GPU 叢集（SCRP）已知事實與待確認項 |
 | `docs/sessions/S0…S6` | 拆分成 7 個可獨立執行的 Claude Code session 任務書 |
 
-執行環境：Mac 做除 TTS 以外的一切；SCRP（RTX 3090）只跑批次 TTS。兩邊以 rsync 交換文件。
+執行環境：校園工作電腦主控；SCRP 跑 GPU 任務，沿用工作電腦既有內網連線及 Chat API 設定。Mac 不再是生產環境。
 
 第一個里程碑：巴別塔（act33side）幕間 **BB-ST-1「未完成的告别」**（127 行）全流程跑通。

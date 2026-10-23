@@ -1,0 +1,111 @@
+{
+  "verified_on": "2026-10-09",
+  "source": "ElevenLabs creative_list_voices",
+  "voices": [
+    {
+      "name": "巴別塔・博士",
+      "voice_id": "iV3I76dMRm2s9GmttD7J",
+      "description": "Designed voice for the Doctor in the Babel fan dub: younger adult man, gentle, restrained, scholarly, slightly tired. Created with Voice Design, no cloning."
+    },
+    {
+      "name": "巴別塔・夢中的巨人",
+      "voice_id": "V3QA4d0P3FDmKv22MtP5",
+      "description": "Babel fan dub: dream giantess reciting the prophecy. Low, hollow, slow, chant-like female voice."
+    },
+    {
+      "name": "巴別塔・女性路人乙",
+      "voice_id": "ur3aSQLh8RYvCGTJIwrT",
+      "description": "Arknights Babel fan dub: shared young female voice (new medical staff member). Higher, youthful, earnest."
+    },
+    {
+      "name": "巴別塔・女性路人甲",
+      "voice_id": "fyXAfEUxcpbv5xELux6Q",
+      "description": "Arknights Babel fan dub: shared female commoner voice (cautious civilian). Lively, gossipy, slightly husky."
+    },
+    {
+      "name": "巴別塔・奴隸商人",
+      "voice_id": "YRb6OHbtBHUDTCROPNxA",
+      "description": "Arknights Babel fan dub: slave trader at the Scar Market. Thin, dry, cynical streetwise male voice."
+    },
+    {
+      "name": "巴別塔・好運",
+      "voice_id": "OeDDK6XKp5w1TA4Z5nhx",
+      "description": "Arknights Babel fan dub: \"Lucky\", a burly but timid commoner. Ordinary slightly rough male voice, talkative everyman."
+    },
+    {
+      "name": "巴別塔・好運的妻子",
+      "voice_id": "BDigKlH1djFfrjNI5ESQ",
+      "description": "Arknights Babel fan dub: Lucky's future wife, a Babel member. Lively, kind, practical young woman."
+    },
+    {
+      "name": "巴別塔・孽茨雷",
+      "voice_id": "t6m1diVT5Me72jWRVfQg",
+      "description": "Arknights Babel fan dub: Nezzsalem, king of the Nachzehrer. Very deep, slow, gravelly elderly bass with heavy pauses."
+    },
+    {
+      "name": "巴別塔・尤莉葉",
+      "voice_id": "wYoMzzHJU7RFbz9kUvsB",
+      "description": "Babel fan dub: Yulie, veteran assassin. Lower-mid, plain, steady, tired female voice."
+    },
+    {
+      "name": "巴別塔・尤莉葉（成熟版）",
+      "voice_id": "EZJp3qpLzzCerITHj2Xp",
+      "description": "Babel fan dub: Yulie, hardened veteran assassin. Low, dry, weathered alto. Chosen by the owner (version C of round two)."
+    },
+    {
+      "name": "巴別塔・旁白",
+      "voice_id": "KyqLkbqLUBlTOZ5BnF7D",
+      "description": "Designed narrator voice for the Babel fan dub: adult woman telling the story to one listener, natural speaking rhythm, calm and slightly wistful. Created with Voice Design, no cloning."
+    },
+    {
+      "name": "巴別塔・曼弗雷德",
+      "voice_id": "DJ5tOWUN9bzAm2R7pRyk",
+      "description": "Babel fan dub: Manfred, young officer. Clear, firm, earnest baritone."
+    },
+    {
+      "name": "巴別塔・曼弗雷德（成熟版）",
+      "voice_id": "PNODjTdlABkuyxcVbWSM",
+      "description": "Babel fan dub: Manfred, seasoned commander. Low, grave, restrained baritone. Chosen by the owner (version C of round two)."
+    },
+    {
+      "name": "巴別塔・曼弗雷德（第三版）",
+      "voice_id": "BNN0GxUi3MX0Nio28Qv7",
+      "description": "Babel fan dub: Manfred, restrained and loyal strongman who is earnest and fussy. Chosen by the owner (version C of round three)."
+    },
+    {
+      "name": "巴別塔・曼弗雷德（第三輪乙）",
+      "voice_id": "Z0VKUGVdUkEzqVWbvvdF",
+      "description": "Babel fan dub: Manfred candidate B of round three, the lowest and steadiest of the three; kept for comparison at the owner's request."
+    },
+    {
+      "name": "巴別塔・杜卡雷",
+      "voice_id": "eZTA9WEoLw3m45LPvAW9",
+      "description": "Arknights Babel fan dub: Duq'arael, lord of the Vampire court. Silky, languid aristocratic baritone, courteous sarcasm."
+    },
+    {
+      "name": "巴別塔・特雷西斯",
+      "voice_id": "wNw5hUbYyiAwNmfFuK9N",
+      "description": "Designed voice for Theresis in the Babel fan dub: middle-aged man, composed veteran general, few plain words, weary but warm underneath. Created with Voice Design, no cloning."
+    },
+    {
+      "name": "巴別塔・男性路人甲",
+      "voice_id": "NVPAYGkRpOeBniROaQiu",
+      "description": "Babel fan dub: generic male soldier voice for nameless minor characters (first used for the unnamed assassin)."
+    },
+    {
+      "name": "巴別塔・疤眼",
+      "voice_id": "vKduMysvHYdx8JTSA9mh",
+      "description": "Babel fan dub: Scar-eye, cyclops broker. Deep, rough, world-weary male bass."
+    },
+    {
+      "name": "巴別塔・粗野傭兵",
+      "voice_id": "fCbdqWw9VcOJTdliAZDN",
+      "description": "Arknights Babel fan dub: shared rough male voice (wounded mercenary, fierce commoner). Hoarse, coarse, short-tempered."
+    },
+    {
+      "name": "巴別塔・菈瑪蓮",
+      "voice_id": "vysqHHhkEOf0vBEPZrjh",
+      "description": "Arknights Babel fan dub: Lamalian, lady of the Banshee court. Low warm mezzo, musical, gentle and quietly witty."
+    }
+  ]
+}
